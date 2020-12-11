@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const Navigation = () => {
 
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" className="mb-4">
             <Navbar.Brand as={NavLink} to="/" exact>Study Management</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

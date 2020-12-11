@@ -3,28 +3,22 @@ from django.contrib.auth import get_user_model
 import datetime
 
 
-SEMESTERS = [
-    ["1-1", "1 - 1"],
-    ["1-2", "1 - 2"],
-    ["2-1", "2 - 1"],
-    ["2-2", "2 - 2"],
-    ["3-1", "3 - 1"],
-    ["3-2", "3 - 2"],
-    ["4-1", "4 - 1"],
-    ["4-2", "4 - 2"],
-]
-
-
 class Semester(models.Model):
-    name = models.CharField(max_length=6, choices=SEMESTERS)
-    description = models.TextField()
+    display_name = models.CharField(max_length=6, unique=True)
+    full_name = models.CharField(max_length=50)
+    code = models.IntegerField(verbose_name="Semester Code")
+    description = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.display_name
 
 class Course(models.Model):
-    course_code = models.CharField(max_length=8)
+    course_code = models.CharField(max_length=8, unique=True)
     title = models.CharField(max_length=200)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.course_code
 
 class Picture(models.Model):
     description = models.TextField(blank=True)
