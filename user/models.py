@@ -6,6 +6,7 @@ from .managers import UserProfileManager
 class UserProfile(AbstractBaseUser, PermissionsMixin):
     """ Represents a user profile inside our system """
 
+    # username = models.CharField(max_length=30, blank=True, null=True)
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
