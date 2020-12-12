@@ -37,7 +37,7 @@ const CreateCourse = () => {
             e.target.reset()
             setCode("")
             setTitle("")
-            setSemester("")
+            setSemester(1)
             setShow(true)
         }
     }

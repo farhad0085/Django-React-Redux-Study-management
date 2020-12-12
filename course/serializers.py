@@ -23,9 +23,9 @@ class PictureSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    pictures = PictureSerializer(many=True)
-    questions = QuestionSerializer(many=True)
-    books = BookSerializer(many=True)
+    pictures = PictureSerializer(many=True, read_only=True)
+    questions = QuestionSerializer(many=True, read_only=True)
+    books = BookSerializer(many=True, read_only=True)
     class Meta:
         model = Course
         fields = '__all__'
