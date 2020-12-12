@@ -25,7 +25,7 @@ class Picture(models.Model):
     picture = models.ImageField(upload_to="media/pictures/", blank=False, null=False)
     created_date = models.DateTimeField(auto_now_add=True)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='pictures')
     uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
 
 
@@ -35,7 +35,7 @@ class Question(models.Model):
     course_teacher = models.CharField(max_length=100)
     created_date = models.DateTimeField(auto_now_add=True)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='questions')
     uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
 
 
@@ -45,7 +45,7 @@ class Book(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='books')
 
 
 class Post(models.Model):
