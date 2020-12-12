@@ -15,7 +15,7 @@ class Semester(models.Model):
 class Course(models.Model):
     course_code = models.CharField(max_length=8, unique=True)
     title = models.CharField(max_length=200)
-    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='courses')
 
     def __str__(self):
         return self.course_code

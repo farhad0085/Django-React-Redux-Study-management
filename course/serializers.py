@@ -21,6 +21,7 @@ class PictureSerializer(serializers.ModelSerializer):
 
 
 class SemesterSerializer(serializers.ModelSerializer):
+    courses = CourseSerializer(many=True)
     class Meta:
         model = Semester
         fields = '__all__'
