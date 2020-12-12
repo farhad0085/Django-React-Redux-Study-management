@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Tab, Row, Col, ListGroup } from "react-bootstrap";
+import { Tab, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as actions from '../store/actions/semesterAction';
 import { connect } from 'react-redux'
@@ -24,11 +24,12 @@ const CoursePage = ({ semesterData, loadSemesters }) => {
                     </ListGroup>
                 </Col>
                 <Col sm={8}>
+                <Button className="mb-2" as={Link} to="/course/new" block>Create Course</Button>
                     <Tab.Content>
                         {semesterData.data && semesterData.data.map(semester => {
                             return (
                                 <Tab.Pane key={semester.code} eventKey={`#${semester.code}`}>
-                                    <h3>Courses of {semester.full_name} ({semester.display_name})</h3>
+                                    <h3 className="text-muted">Courses of {semester.full_name} ({semester.display_name})</h3>
                                     <ListGroup>
                                         {semester.courses.map(course => {
                                             return (

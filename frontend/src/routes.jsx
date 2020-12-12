@@ -8,6 +8,7 @@ import IndividualCoursePage from './pages/IndividualCoursePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ForgetPasswordPage from './pages/ForgetPasswordPage'
+import CreateCourse from './pages/CreateCourse'
 
 const routes = () => {
 
@@ -18,6 +19,7 @@ const routes = () => {
             <Route path="/semesters" exact component={SemesterPage} />
             <Route path="/semesters/:semesterId" component={IndividualSemesterPage} />
             <Route path="/courses" exact component={CoursePage} />
+            <Route path="/course/new" exact component={CreateCourse} />
             <Route path="/courses/:courseId" component={IndividualCoursePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />

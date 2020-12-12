@@ -10,7 +10,7 @@ const Navigation = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Form className="ml-auto my-2">
-                    <FormControl style={{width: '400px'}} type="search" placeholder="Search" />
+                    <FormControl type="search" placeholder="Search" />
                 </Form>
                 <Nav className="ml-auto">
                     <Nav.Link as={NavLink} to="/courses" exact>Courses</Nav.Link>
