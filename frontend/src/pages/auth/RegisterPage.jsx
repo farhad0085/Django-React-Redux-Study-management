@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Button } from "react-bootstrap";
-import BaseFormCard from '../components/BaseFormCard';
+import BaseFormCard from '../../components/BaseFormCard';
 
 
 class RegisterPage extends Component {

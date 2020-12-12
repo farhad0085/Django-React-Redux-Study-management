@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Tab, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import * as actions from '../store/actions/semesterAction';
+import * as actions from '../../store/actions/semesterAction';
 import { connect } from 'react-redux'
 
 const CoursePage = ({ semesterData, loadSemesters }) => {

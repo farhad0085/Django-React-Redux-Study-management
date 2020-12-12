@@ -1,17 +1,16 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import SemesterPage from './pages/SemesterPage'
-import IndividualSemesterPage from './pages/IndividualSemesterPage'
-import CoursePage from './pages/CoursePage'
-import IndividualCoursePage from './pages/IndividualCoursePage'
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
-import ForgetPasswordPage from './pages/ForgetPasswordPage'
-import CreateCourse from './pages/CreateCourse'
-import LogoutPage from './pages/LogoutPage'
+import SemesterPage from './pages/semester/SemesterPage'
+import IndividualSemesterPage from './pages/semester/IndividualSemesterPage'
+import CoursePage from './pages/course/CoursePage'
+import IndividualCoursePage from './pages/course/IndividualCoursePage'
+import LoginPage from './pages/auth/LoginPage'
+import RegisterPage from './pages/auth/RegisterPage'
+import ForgetPasswordPage from './pages/auth/ForgetPasswordPage'
+import CreateCourse from './pages/course/CreateCourse'
+import LogoutPage from './pages/auth/LogoutPage'
 import { useSelector } from 'react-redux'
-
 
 
 const routes = () => {

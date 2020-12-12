@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import BaseFormCard from '../components/BaseFormCard'
+import BaseFormCard from '../../components/BaseFormCard'
 import { Form, Button, Alert } from "react-bootstrap";
 import { connect } from 'react-redux'
-import * as actions from '../store/actions/courseActions'
+import * as actions from '../../store/actions/courseActions'
 
 
 const CreateCourse = ({ courseData, createCourse }) => {
