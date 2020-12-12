@@ -22,7 +22,7 @@ const routes = () => {
             <Route path="/semesters/:semesterId" component={IndividualSemesterPage} />
             <Route path="/courses" exact component={CoursePage} />
             <PrivateRoute path="/course/new" exact component={CreateCourse} />
-            <Route path="/courses/:courseId" component={IndividualCoursePage} />
+            <Route path="/courses/:courseId/:courseCode/:courseTitle" component={IndividualCoursePage} />
             <GuestRoute path="/login" component={LoginPage} />
             <GuestRoute path="/register" component={RegisterPage} />
             <GuestRoute path="/forget-password" component={ForgetPasswordPage} />

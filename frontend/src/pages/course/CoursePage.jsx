@@ -13,38 +13,43 @@ const CoursePage = ({ semesterData, loadSemesters }) => {
         <Tab.Container id="list-group-tabs-example" defaultActiveKey="#11">
             <Row>
                 <Col sm={4}>
-                    <ListGroup>
-                        {semesterData.data && semesterData.data.map(semester => {
-                            return (
-                                <ListGroup.Item key={semester.code} action href={`#${semester.code}`}>
-                                    {semester.full_name} ({semester.display_name})
-                                </ListGroup.Item>
-                            )
-                        })}
-                    </ListGroup>
+                    {semesterData.data.length > 0 ? (
+                        <ListGroup>
+                            { semesterData.data.map(semester => {
+                                return (
+                                    <ListGroup.Item key={semester.code} action href={`#${semester.code}`}>
+                                        {semester.full_name} ({semester.display_name})
+                                    </ListGroup.Item>
+                                )
+                            })}
+                        </ListGroup>
+                    ) : "Loading..."}
+
                 </Col>
                 <Col sm={8}>
-                <Button className="mb-2" as={Link} to="/course/new" block>Create Course</Button>
-                    <Tab.Content>
-                        {semesterData.data && semesterData.data.map(semester => {
-                            return (
-                                <Tab.Pane key={semester.code} eventKey={`#${semester.code}`}>
-                                    <h3 className="text-muted">Courses of {semester.full_name} ({semester.display_name})</h3>
-                                    <ListGroup>
-                                        {semester.courses.map(course => {
-                                            return (
-                                                <ListGroup.Item key={course.course_code} action to={`/courses/${course.course_code}`} as={Link}>
-                                                    {course.course_code} - {course.title}
-                                                </ListGroup.Item>
-                                            )
-                                        })}
+                    <Button className="mb-2" as={Link} to="/course/new" block>Create Course</Button>
+                    {semesterData.data.length > 0 ? (
+                        <Tab.Content>
+                            {semesterData.data.map(semester => {
+                                return (
+                                    <Tab.Pane key={semester.code} eventKey={`#${semester.code}`}>
+                                        <h3 className="text-muted">Courses of {semester.full_name} ({semester.display_name})</h3>
+                                        <ListGroup>
+                                            {semester.courses.map(course => {
+                                                return (
+                                                    <ListGroup.Item key={course.course_code} action to={`/courses/${course.id}/${course.course_code}/${course.title}`} as={Link}>
+                                                        {course.course_code} - {course.title}
+                                                    </ListGroup.Item>
+                                                )
+                                            })}
 
-                                    </ListGroup>
-                                </Tab.Pane>
-                            )
-                        }
-                        )}
-                    </Tab.Content>
+                                        </ListGroup>
+                                    </Tab.Pane>
+                                )
+                            }
+                            )}
+                        </Tab.Content>
+                    ) : "Loading"}
                 </Col>
             </Row>
         </Tab.Container>

@@ -15,6 +15,22 @@ function courseReducer(state = initialState, action) {
                 errors: {}
             }
         }
+        case Types.COURSE_DATA_LOADED: {
+            return {
+                ...state,
+                created: false,
+                errors: {},
+                data: action.payload
+            }
+        }
+        case Types.COURSE_DATA_LOAD_ERROR: {
+            return {
+                ...state,
+                created: false,
+                errors: action.payload,
+                data: {}
+            }
+        }
         case Types.COURSE_CREATE_ERROR: {
             return {
                 ...state,
