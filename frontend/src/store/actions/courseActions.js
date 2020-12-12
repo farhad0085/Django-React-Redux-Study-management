@@ -9,7 +9,6 @@ export const createCourse = (courseData) => dispatch => {
             dispatch({type: Types.COURSE_CREATED, payload: res.data })
         })
         .catch(error => {
-            console.dir(error);
             dispatch({type: Types.COURSE_CREATE_ERROR, payload: error.response.data })
         })
 }

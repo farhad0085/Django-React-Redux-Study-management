@@ -12,7 +12,6 @@ function courseReducer(state = initialState, action) {
             return {
                 ...state,
                 created: true,
-                data: action.payload,
                 errors: {}
             }
         }

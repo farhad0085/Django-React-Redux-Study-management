@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import BaseFormCard from '../../components/BaseFormCard'
 import { Form, Button, Alert } from "react-bootstrap";
-import { connect } from 'react-redux'
-import * as actions from '../../store/actions/courseActions'
+import { useSelector, useDispatch } from 'react-redux'
+import { createCourse } from '../../store/actions/courseActions'
+import { loadSemesters } from '../../store/actions/semesterAction'
 
 
-const CreateCourse = ({ courseData, createCourse }) => {
+const CreateCourse = () => {
+
+    const dispatch = useDispatch()
+
+    const courseData = useSelector(state => state.course)
+    const semesterData = useSelector(state => state.semester)
 
     const [code, setCode] = useState("")
     const [title, setTitle] = useState("")
-    const [semester, setSemester] = useState("")
+    const [semester, setSemester] = useState(1)
     const [show, setShow] = useState(true)
+
+    useEffect(() => {
+        dispatch(loadSemesters())
+    }, [dispatch])
 
     const submitHandler = e => {
         e.preventDefault()
@@ -21,7 +31,7 @@ const CreateCourse = ({ courseData, createCourse }) => {
             semester: semester
         }
 
-        createCourse(data)
+        dispatch(createCourse(data))
 
         if (Object.keys(courseData.errors).length === 0) {
             e.target.reset()
@@ -61,44 +71,41 @@ const CreateCourse = ({ courseData, createCourse }) => {
                 <Form.Group controlId="formBasicSemester">
                     <Form.Label>Semester</Form.Label>
                     <Form.Control
+                        as="select"
                         type="text"
                         placeholder="1/1"
-                        value={semester}
+                        value={semester.id}
                         isInvalid={!!courseData.errors.semester}
                         onChange={(e) => setSemester(e.target.value)}
-                    />
+                    >
+                        {semesterData.data.map(semester => <option key={semester.id} value={semester.id}>{semester.full_name}</option>)}
+                    </Form.Control>
+
                     {courseData.errors.semester && <Form.Control.Feedback type="invalid">{courseData.errors.semester[0]}</Form.Control.Feedback>}
                 </Form.Group>
                 <Button variant="primary" block type="submit">
                     Create Course
                 </Button>
             </Form>
-            {courseData.created && show && (
-                    <Alert
-                        onClose={() => setShow(false)}
-                        dismissible
-                        variant="success"
-                        className="mt-2"
-                    >
-                        Course created successfully.
-                    </Alert>
+            {courseData.created && (
+                <>
+                    {show && (
+                        <Alert
+                            onClose={() => setShow(false)}
+                            dismissible
+                            variant="success"
+                            className="mt-2"
+                        >
+                            Course created successfully.
+                        </Alert>
+                    )}
+
+                </>
             )}
         </BaseFormCard>
     )
 
 }
 
-const mapStateToProps = state => {
-    return {
-        courseData: state.course
-    }
-}
 
-
-const mapDispatchToProps = dispatch => {
-    return {
-        createCourse: (courseData) => dispatch(actions.createCourse(courseData))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateCourse)
+export default CreateCourse

@@ -1,7 +1,7 @@
 import * as Types from '../actions/actionTypes'
 
 const initialState = {
-    
+    data: []
 }
 
 function semesterReducer(state = initialState, action) {
