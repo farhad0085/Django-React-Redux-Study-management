@@ -1,12 +1,15 @@
 import React from 'react'
 import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
-import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { NavLink, Link } from 'react-router-dom';
 
 const Navigation = () => {
 
+    const auth = useSelector(state => state.auth)
+
     return (
         <Navbar bg="light" expand="lg" className="mb-4">
-            <Navbar.Brand as={NavLink} to="/" exact>Study Management</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">Study Management</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Form className="ml-auto my-2">
@@ -25,8 +28,14 @@ const Navigation = () => {
                         <NavDropdown.Item as={NavLink} to="/semesters/4-2">Forth year, Second Semester (4/2)</NavDropdown.Item>
                         <NavDropdown.Item as={NavLink} to="/semesters" exact>Browse all</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
-                    <Nav.Link as={NavLink} to="/register">Register</Nav.Link>
+                    {auth.isAuthenticated ? (
+                        <Nav.Link as={NavLink} to="/logout">Logout</Nav.Link>
+                    ): (
+                        <>
+                            <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
+                            <Nav.Link as={NavLink} to="/register">Register</Nav.Link>
+                        </>
+                    )}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

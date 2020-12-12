@@ -1,32 +1,62 @@
-import React, { Component } from 'react'
-import { Form, Button} from "react-bootstrap";
+import React, { useState } from 'react'
+import { Form, Button } from "react-bootstrap";
 import BaseFormCard from '../components/BaseFormCard';
+import { login } from "../store/actions/authActions";
+import { connect } from 'react-redux'
 
 
-class LoginPage extends Component {
+const LoginPage = ({ login, history }) => {
 
-    state = {}
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
-    render() {
-        return (
-            <BaseFormCard title="User Login" type="login">
-                <Form>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Email" />
-                    </Form.Group>
+    const submitHandler = event => {
+        event.preventDefault()
 
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                    <Button variant="primary" block type="submit">
-                        Login
-                    </Button>
-                </Form>
-            </BaseFormCard>
-        )
+        login({email, password}, history)
+
+    }
+
+    return (
+        <BaseFormCard title="User Login" type="login">
+            <Form onSubmit={submitHandler}>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        placeholder="Email"
+                    />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        placeholder="Password"
+                    />
+                </Form.Group>
+                <Button variant="primary" block type="submit">
+                    Login
+                </Button>
+            </Form>
+        </BaseFormCard>
+    )
+}
+
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
     }
 }
 
-export default LoginPage
+const mapDispatchToProps = dispatch => {
+    return {
+        login: (creds, history) => dispatch(login(creds, history))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

@@ -12,12 +12,14 @@ function courseReducer(state = initialState, action) {
             return {
                 ...state,
                 created: true,
-                data: action.payload
+                data: action.payload,
+                errors: {}
             }
         }
         case Types.COURSE_CREATE_ERROR: {
             return {
                 ...state,
+                created: false,
                 errors: action.payload
             }
         }

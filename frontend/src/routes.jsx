@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import SemesterPage from './pages/SemesterPage'
 import IndividualSemesterPage from './pages/IndividualSemesterPage'
@@ -9,9 +9,12 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ForgetPasswordPage from './pages/ForgetPasswordPage'
 import CreateCourse from './pages/CreateCourse'
+import LogoutPage from './pages/LogoutPage'
+import { useSelector } from 'react-redux'
+
+
 
 const routes = () => {
-
 
     return (
         <>
@@ -19,14 +22,68 @@ const routes = () => {
             <Route path="/semesters" exact component={SemesterPage} />
             <Route path="/semesters/:semesterId" component={IndividualSemesterPage} />
             <Route path="/courses" exact component={CoursePage} />
-            <Route path="/course/new" exact component={CreateCourse} />
+            <PrivateRoute path="/course/new" exact component={CreateCourse} />
             <Route path="/courses/:courseId" component={IndividualCoursePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/forget-password" component={ForgetPasswordPage} />
+            <GuestRoute path="/login" component={LoginPage} />
+            <GuestRoute path="/register" component={RegisterPage} />
+            <GuestRoute path="/forget-password" component={ForgetPasswordPage} />
+            <PrivateRoute path="/logout" component={LogoutPage} />
         </>
     )
 
 }
 
 export default routes
+
+
+const GuestRoute = ({ component: Component, ...rest }) => {
+    
+    const auth = useSelector(state => state.auth)
+    
+    return (
+        <Route
+            {...rest}
+
+            render={props => (
+                <>
+                    {!auth.isAuthenticated ? <Component {...props} /> : (
+                        <Redirect
+                            to={{
+                                pathname: "/",
+                                state: { from: props.location }
+                            }}
+                        />
+                    )}
+                </>
+            )}
+        />
+    )
+
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    
+    const auth = useSelector(state => state.auth)
+    
+    return (
+        <Route
+            {...rest}
+
+            render={props => (
+                <>
+                    {auth.isAuthenticated ? <Component {...props} /> : (
+                        <Redirect
+                            to={{
+                                pathname: "/login",
+                                state: { from: props.location }
+                            }}
+                        />
+                    )}
+                </>
+            )}
+        />
+    )
+
+}
+
+
