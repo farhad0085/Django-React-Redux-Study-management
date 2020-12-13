@@ -1,47 +1,75 @@
 import React from 'react'
-import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
 import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
+import { Box, Heading, Flex, Text, Button } from "@chakra-ui/react";
+import MenuIcon from './MenuIcon';
 
-const Navigation = () => {
+const NavItem = ({ children }) => (
+    <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+        {children}
+    </Text>
+);
+
+const Navigation = props => {
+    const [show, setShow] = React.useState(false);
+    const handleToggle = () => setShow(!show);
 
     const auth = useSelector(state => state.auth)
 
+
     return (
-        <Navbar bg="light" expand="lg" className="mb-4">
-            <Navbar.Brand as={Link} to="/">Study Management</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Form className="ml-auto my-2">
-                    <FormControl type="search" placeholder="Search" />
-                </Form>
-                <Nav className="ml-auto">
-                    <Nav.Link as={NavLink} to="/courses" exact>Courses</Nav.Link>
-                    <NavDropdown title="Semesters" id="basic-nav-dropdown">
-                        <NavDropdown.Item as={NavLink} to="/semesters/1-1">First year, First Semester (1/1)</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/semesters/1-2">First year, Second Semester (1/2)</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/semesters/2-1">Second year, First Semester (2/1)</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/semesters/2-2">Second year, Second Semester (2/2)</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/semesters/3-1">Third year, First Semester (3/1)</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/semesters/3-2">Third year, Second Semester (3/2)</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/semesters/4-1">Forth year, First Semester (4/1)</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/semesters/4-2">Forth year, Second Semester (4/2)</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/semesters" exact>Browse all</NavDropdown.Item>
-                    </NavDropdown>
-                    {auth.isAuthenticated ? (
-                        <Nav.Link as={NavLink} to="/logout">Logout</Nav.Link>
-                    ): (
+        <Flex
+            as="nav"
+            align="center"
+            justify="space-between"
+            wrap="wrap"
+            padding="1.5rem"
+            bg="teal.500"
+            color="white"
+            {...props}
+        >
+            <Flex align="center" mr={5}>
+                <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+                    <Link to="/">Study Management</Link>
+                </Heading>
+            </Flex>
+
+            <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+                <MenuIcon />
+            </Box>
+
+            <Box
+                display={{ sm: show ? "block" : "none", md: "flex" }}
+                width={{ sm: "full", md: "auto" }}
+                alignItems="center"
+                flexGrow={1}
+            >
+                <NavItem><NavLink to="/courses" exact>Courses</NavLink></NavItem>
+                <NavItem><NavLink to="/semesters" exact>Semesters</NavLink></NavItem>
+            </Box>
+
+            <Box
+                display={{ sm: show ? "block" : "none", md: "block" }}
+                mt={{ base: 4, md: 0 }}
+            >
+                {auth.isAuthenticated ? (
+                    <Button as={NavLink} to="/logout" mr={{ base: 2 }} bg="transparent" border="1px">
+                        Logout
+                    </Button>
+                ) : (
                         <>
-                            <Nav.Link as={NavLink} to="/login">Login</Nav.Link>
-                            <Nav.Link as={NavLink} to="/register">Register</Nav.Link>
+                            <Button as={NavLink} to="/login" mr={{ base: 2 }} bg="transparent" border="1px">
+                                Login
+                            </Button>
+                            <Button as={NavLink} to="/register" bg="transparent" border="1px">
+                                Create account
+                            </Button>
                         </>
                     )}
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-    )
 
-}
+            </Box>
+        </Flex>
+    );
+};
 
-
-export default Navigation
+export default Navigation;
