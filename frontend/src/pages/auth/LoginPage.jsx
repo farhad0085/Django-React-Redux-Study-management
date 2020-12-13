@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button } from "react-bootstrap";
+import { FormControl, Button, FormLabel, FormErrorMessage, Input } from "@chakra-ui/react";
 import BaseFormCard from '../../components/BaseFormCard';
 import { login } from "../../store/actions/authActions";
 import { connect } from 'react-redux'
@@ -13,36 +13,36 @@ const LoginPage = ({ login, history }) => {
     const submitHandler = event => {
         event.preventDefault()
 
-        login({email, password}, history)
+        login({ email, password }, history)
 
     }
 
     return (
         <BaseFormCard title="User Login" type="login">
-            <Form onSubmit={submitHandler}>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
+            <form onSubmit={submitHandler}>
+                <FormControl id="formBasicEmail">
+                    <FormLabel>Email address</FormLabel>
+                    <Input
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         type="email"
                         placeholder="Email"
                     />
-                </Form.Group>
+                </FormControl>
 
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
+                <FormControl id="formBasicPassword">
+                    <FormLabel>Password</FormLabel>
+                    <Input
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         type="password"
                         placeholder="Password"
                     />
-                </Form.Group>
-                <Button variant="primary" block type="submit">
+                </FormControl>
+                <Button colorScheme="teal" mt="20px" type="submit">
                     Login
                 </Button>
-            </Form>
+            </form>
         </BaseFormCard>
     )
 }

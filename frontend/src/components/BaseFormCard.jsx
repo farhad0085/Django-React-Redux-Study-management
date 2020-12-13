@@ -1,32 +1,33 @@
 import React from 'react'
-import { Card, Row, Col } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import { Heading, Box, Link, Spacer, Flex, Container } from "@chakra-ui/react";
+
 
 const BaseFormCard = (props) => {
 
     return (
-        <Row>
-            <Col md={{ span: 6, offset: 3 }} sm={12}>
-                <Card border="success">
-                    <Card.Body>
-                        <Card.Title className="mb-2 text-muted text-center">{props.title}</Card.Title>
-                        <hr />
-                        <Card.Text as='div' className="mb-2">
-                            {props.children}
-                        </Card.Text>
-                        {props.type === "login" && (
-                            <>
-                            <Card.Link as={Link} to="/forget-password">Forgot Password?</Card.Link>
-                            <Card.Link className={"float-right"} as={Link} to="/register">Create an Account</Card.Link>
-                            </>
-                        )}
-                        {props.type === "register" && (
-                            <Card.Link as={Link} to="/login">Already have account? Login here</Card.Link>
-                        )}
-                    </Card.Body>
-                </Card>
-            </Col>
-        </Row>
+        <Container maxW="xl">
+            <Box boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
+
+                <Heading as="h2" size="lg" letterSpacing={"-.1rem"}>{props.title}</Heading>
+
+                <hr />
+                <Box mb={4} mt={4}>
+                    {props.children}
+                </Box>
+
+                {props.type === "login" && (
+                    <Flex>
+                        <Link color="teal.500" as={RouterLink} to="/forget-password">Forgot Password?</Link>
+                        <Spacer />
+                        <Link color="teal.500" as={RouterLink} to="/register">Create an Account</Link>
+                    </Flex>
+                )}
+                {props.type === "register" && (
+                    <Link color="teal.500" as={RouterLink} to="/login">Already have account? Login here</Link>
+                )}
+            </Box>
+        </Container>
     )
 }
 
