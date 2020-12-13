@@ -20,13 +20,15 @@ class Course(models.Model):
     def __str__(self):
         return self.course_code
 
+
 class Picture(models.Model):
     description = models.TextField(blank=True)
     picture = models.ImageField(upload_to="media/pictures/", blank=False, null=False)
+    uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
     created_date = models.DateTimeField(auto_now_add=True)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='pictures')
-    uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='pictures')
 
 
 class Question(models.Model):
@@ -51,7 +53,9 @@ class Book(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField(blank=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='posts')
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='posts')
     posted_by = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    
+
 

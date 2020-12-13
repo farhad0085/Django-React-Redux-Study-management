@@ -22,10 +22,20 @@ class PictureSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class PostSerializer(serializers.ModelSerializer):
+    pictures = PictureSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+
 class CourseSerializer(serializers.ModelSerializer):
     pictures = PictureSerializer(many=True, read_only=True)
     questions = QuestionSerializer(many=True, read_only=True)
     books = BookSerializer(many=True, read_only=True)
+    posts = PostSerializer(many=True, read_only=True)
+
     class Meta:
         model = Course
         fields = '__all__'
@@ -35,11 +45,5 @@ class SemesterSerializer(serializers.ModelSerializer):
     courses = CourseSerializer(many=True)
     class Meta:
         model = Semester
-        fields = '__all__'
-
-
-class PostSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Post
         fields = '__all__'
 
