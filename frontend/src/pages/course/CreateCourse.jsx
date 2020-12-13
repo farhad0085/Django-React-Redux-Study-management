@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import BaseFormCard from '../../components/BaseFormCard'
-import { Form, Button, Alert } from "react-bootstrap";
 import { useSelector, useDispatch } from 'react-redux'
 import { createCourse } from '../../store/actions/courseActions'
 import { loadSemesters } from '../../store/actions/semesterAction'
+import SubmitButton from '../../components/helpers/SubmitButton'
+import FormField from '../../components/helpers/FormField'
+import DismissableAlert from '../../components/helpers/DismissableAlert'
 
 
 const CreateCourse = () => {
@@ -16,7 +18,6 @@ const CreateCourse = () => {
     const [code, setCode] = useState("")
     const [title, setTitle] = useState("")
     const [semester, setSemester] = useState(1)
-    const [show, setShow] = useState(true)
 
     useEffect(() => {
         dispatch(loadSemesters())
@@ -38,70 +39,49 @@ const CreateCourse = () => {
             setCode("")
             setTitle("")
             setSemester(1)
-            setShow(true)
         }
     }
 
     return (
         <BaseFormCard title="Create Course">
-            <Form onSubmit={submitHandler}>
-                <Form.Group controlId="formBasicCode">
-                    <Form.Label>Course Code</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="EEE101"
-                        value={code}
-                        isInvalid={!!courseData.errors.course_code}
-                        onChange={(e) => setCode(e.target.value)}
-                    />
-                    {courseData.errors.course_code && <Form.Control.Feedback type="invalid">{courseData.errors.course_code[0]}</Form.Control.Feedback>}
+            <form onSubmit={submitHandler}>
+                <FormField
+                    id="courseCode"
+                    label="Course Code"
+                    type="text"
+                    placeholder="EEE101"
+                    value={code}
+                    isInvalid={!!courseData.errors.course_code}
+                    // isInvalid={true}
+                    onChange={setCode}
+                    errorMsg={courseData.errors.course_code && courseData.errors.course_code[0]}
+                // errorMsg="Something is wrong"
+                />
+                <FormField
+                    id="courseTitle"
+                    label="Course Title"
+                    type="text"
+                    placeholder="Fundamentals of Electrical Circuit I"
+                    value={title}
+                    isInvalid={!!courseData.errors.title}
+                    onChange={setTitle}
+                    errorMsg={courseData.errors.title && courseData.errors.title[0]}
+                />
+                <FormField
+                    id="semester"
+                    label="Semester"
+                    type="select"
+                    value={semester.id}
+                    isInvalid={!!courseData.errors.semester}
+                    onChange={setSemester}
+                    errorMsg={courseData.errors.semester && courseData.errors.semester[0]}
+                >
+                    {semesterData.data.map(semester => <option key={semester.id} value={semester.id}>{semester.full_name}</option>)}
+                </FormField>
 
-                </Form.Group>
-                <Form.Group controlId="formBasicTitle">
-                    <Form.Label>Course Title</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={title}
-                        isInvalid={!!courseData.errors.title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Fundamentals of Electrical Circuit I"
-                    />
-                    {courseData.errors.title && <Form.Control.Feedback type="invalid">{courseData.errors.title[0]}</Form.Control.Feedback>}
-                </Form.Group>
-                <Form.Group controlId="formBasicSemester">
-                    <Form.Label>Semester</Form.Label>
-                    <Form.Control
-                        as="select"
-                        type="text"
-                        placeholder="1/1"
-                        value={semester.id}
-                        isInvalid={!!courseData.errors.semester}
-                        onChange={(e) => setSemester(e.target.value)}
-                    >
-                        {semesterData.data.map(semester => <option key={semester.id} value={semester.id}>{semester.full_name}</option>)}
-                    </Form.Control>
-
-                    {courseData.errors.semester && <Form.Control.Feedback type="invalid">{courseData.errors.semester[0]}</Form.Control.Feedback>}
-                </Form.Group>
-                <Button variant="primary" block type="submit">
-                    Create Course
-                </Button>
-            </Form>
-            {courseData.created && (
-                <>
-                    {show && (
-                        <Alert
-                            onClose={() => setShow(false)}
-                            dismissible
-                            variant="success"
-                            className="mt-2"
-                        >
-                            Course created successfully.
-                        </Alert>
-                    )}
-
-                </>
-            )}
+                <SubmitButton title="Create Course" />
+            </form>
+            {courseData.created && <DismissableAlert mt={2} text="Course created successfully." type="success" />}
         </BaseFormCard>
     )
 

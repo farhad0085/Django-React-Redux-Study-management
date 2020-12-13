@@ -1,11 +1,24 @@
-import { FormControl, FormLabel, Input } from '@chakra-ui/react'
+import { FormControl, FormLabel, Input, FormErrorMessage, Select } from '@chakra-ui/react'
 import React from 'react'
 
 
-const FormField = ({ value, label, onChange, id, type, placeholder }) => {
+const FormField = (props) => {
+    const { value, label, onChange, id, type, placeholder, isInvalid, errorMsg } = props;
+    
+    if (type === 'select') {
+        return (
+            <FormControl isInvalid={isInvalid} mb={2} id={id}>
+                <FormLabel>{label}</FormLabel>
+                <Select value={value} onChange={(e) => onChange(e.target.value)}>
+                    {props.children}
+                </Select>
+                {errorMsg && <FormErrorMessage>{errorMsg}</FormErrorMessage>}
+            </FormControl>
+        )
+    }
 
     return (
-        <FormControl mb={2} id={id}>
+        <FormControl isInvalid={isInvalid} mb={2} id={id}>
             <FormLabel>{label}</FormLabel>
             <Input
                 value={value}
@@ -13,6 +26,7 @@ const FormField = ({ value, label, onChange, id, type, placeholder }) => {
                 type={type}
                 placeholder={placeholder}
             />
+            {errorMsg && <FormErrorMessage>{errorMsg}</FormErrorMessage>}
         </FormControl>
     )
 
