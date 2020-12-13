@@ -6,7 +6,7 @@ import IndividualSemesterPage from './pages/semester/IndividualSemesterPage'
 // import CoursePage from './pages/course/CoursePage'
 import IndividualCoursePage from './pages/course/IndividualCoursePage'
 import LoginPage from './pages/auth/LoginPage'
-// import RegisterPage from './pages/auth/RegisterPage'
+import RegisterPage from './pages/auth/RegisterPage'
 import ForgetPasswordPage from './pages/auth/ForgetPasswordPage'
 // import CreateCourse from './pages/course/CreateCourse'
 import LogoutPage from './pages/auth/LogoutPage'
@@ -24,7 +24,7 @@ const routes = () => {
             <PrivateRoute path="/course/new" exact component={CreateCourse} /> */}
             <Route path="/courses/:courseId/:courseCode/:courseTitle" component={IndividualCoursePage} />
             <GuestRoute path="/login" component={LoginPage} />
-            {/* <GuestRoute path="/register" component={RegisterPage} /> */}
+            <GuestRoute path="/register" component={RegisterPage} />
             <GuestRoute path="/forget-password" component={ForgetPasswordPage} />
             <PrivateRoute path="/logout" component={LogoutPage} />
         </>
