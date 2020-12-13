@@ -1,73 +1,65 @@
 import React, { useEffect } from 'react'
-import { Tab, Row, Col, ListGroup, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import * as actions from '../../store/actions/semesterAction';
-import { connect } from 'react-redux'
+import { loadSemesters } from '../../store/actions/semesterAction';
+import { useDispatch, useSelector } from 'react-redux'
+import { Tabs, Heading, TabPanel, TabList, TabPanels, Tab, List, ListItem, ListIcon, Box } from "@chakra-ui/react";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 
-const CoursePage = ({ semesterData, loadSemesters }) => {
+
+const CoursePage = () => {
+
+
+    const dispatch = useDispatch()
+    const semesterData = useSelector(state => state.semester)
+
     useEffect(() => {
-        loadSemesters()
-    }, [loadSemesters])
+        dispatch(loadSemesters())
+    }, [dispatch])
 
     return (
-        <Tab.Container id="list-group-tabs-example" defaultActiveKey="#11">
-            <Row>
-                <Col sm={4}>
-                    {semesterData.data.length > 0 ? (
-                        <ListGroup>
-                            { semesterData.data.map(semester => {
-                                return (
-                                    <ListGroup.Item key={semester.code} action href={`#${semester.code}`}>
-                                        {semester.full_name} ({semester.display_name})
-                                    </ListGroup.Item>
-                                )
-                            })}
-                        </ListGroup>
-                    ) : "Loading..."}
+        <>
+            { semesterData.data.length > 0 && (
+                <Tabs isFitted variant="soft-rounded">
+                    <TabList mb="1em">
+                        {semesterData.data.map(semester => {
+                            return (
+                                <Tab key={semester.code}>
+                                    {semester.full_name} ({semester.display_name})
+                                </Tab>
+                            )
+                        })}
+                    </TabList>
+                    <TabPanels>
+                        {semesterData.data.map(semester => {
+                            return (
+                                <TabPanel key={semester.code} eventKey={`#${semester.code}`}>
 
-                </Col>
-                <Col sm={8}>
-                    <Button className="mb-2" as={Link} to="/course/new" block>Create Course</Button>
-                    {semesterData.data.length > 0 ? (
-                        <Tab.Content>
-                            {semesterData.data.map(semester => {
-                                return (
-                                    <Tab.Pane key={semester.code} eventKey={`#${semester.code}`}>
-                                        <h3 className="text-muted">Courses of {semester.full_name} ({semester.display_name})</h3>
-                                        <ListGroup>
+                                    <Box boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
+                                        <Heading as="h2" size="md" mb={2}>Courses of {semester.full_name} ({semester.display_name})</Heading>
+                                        <hr />
+                                        <List mt={2} spacing={3}>
                                             {semester.courses.map(course => {
                                                 return (
-                                                    <ListGroup.Item key={course.course_code} action to={`/courses/${course.id}/${course.course_code}/${course.title}`} as={Link}>
-                                                        {course.course_code} - {course.title}
-                                                    </ListGroup.Item>
+                                                    <ListItem key={course.course_code}>
+                                                        <ListIcon as={CheckCircleIcon} color="green.500" />
+                                                        <Link to={`/courses/${course.id}/${course.course_code}/${course.title}`}>
+                                                            {course.course_code} - {course.title}
+                                                        </Link>
+                                                    </ListItem>
                                                 )
                                             })}
-
-                                        </ListGroup>
-                                    </Tab.Pane>
-                                )
-                            }
-                            )}
-                        </Tab.Content>
-                    ) : "Loading"}
-                </Col>
-            </Row>
-        </Tab.Container>
+                                        </List>
+                                    </Box>
+                                </TabPanel>
+                            )
+                        }
+                        )}
+                    </TabPanels>
+                </Tabs>
+            )}
+        </>
     )
 
 }
 
-
-const mapStateToProps = state => {
-    return {
-        semesterData: state.semester
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        loadSemesters: () => dispatch(actions.loadSemesters())
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CoursePage)
+export default CoursePage
