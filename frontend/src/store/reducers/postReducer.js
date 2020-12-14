@@ -1,7 +1,7 @@
 import * as Types from '../actions/actionTypes'
 
 const initialState = {
-    data: {},
+    data: [],
     error: {}
 }
 

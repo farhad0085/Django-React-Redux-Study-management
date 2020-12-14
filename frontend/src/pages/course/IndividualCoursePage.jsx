@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../../store/actions/postActions";
-import { Heading, Box } from "@chakra-ui/react";
-import Posts from '../../components/post/Posts';
+import PostArchive from '../../components/archive/PostArchive';
 
 
 const IndividualCoursePage = (props) => {
@@ -19,13 +18,7 @@ const IndividualCoursePage = (props) => {
     }, [dispatch, courseId])
 
     return (
-        <Box boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
-            <Heading mb={2}>{courseTitle} - ({courseCode})</Heading>
-            <hr />
-            <Box mt={2}>
-                {post.data.length > 0 && <Posts posts={post.data} />}
-            </Box>
-        </Box>
+        <PostArchive posts={post.data} title={`Updates from - ${courseTitle} - (${courseCode})`} />
     )
 
 }

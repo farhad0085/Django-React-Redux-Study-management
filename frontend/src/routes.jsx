@@ -19,7 +19,7 @@ const routes = () => {
         <>
             <Route path="/" exact component={HomePage} />
             <Route path="/semesters" exact component={SemesterPage} />
-            <Route path="/semesters/:semesterId" component={IndividualSemesterPage} />
+            <Route path="/semesters/:semesterId/:semesterTitle" component={IndividualSemesterPage} />
             <Route path="/courses" exact component={CoursePage} />
             <PrivateRoute path="/course/new" exact component={CreateCourse} />
             <Route path="/courses/:courseId/:courseCode/:courseTitle" component={IndividualCoursePage} />
