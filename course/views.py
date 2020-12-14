@@ -8,7 +8,7 @@ from .serializers import (
     PictureSerializer,
     PostSerializer
 )
-
+from django_filters import rest_framework as filters
 
 class SemesterViewSet(ModelViewSet):
     queryset = Semester.objects.all()
@@ -38,3 +38,5 @@ class BookViewSet(ModelViewSet):
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_fields = ('course', 'semester')

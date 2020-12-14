@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Heading, Box } from "@chakra-ui/react";
-import SinglePost from '../components/SinglePost';
 import { getAllPosts } from '../store/actions/postActions';
-
+import Posts from '../components/post/Posts'
 
 const HomePage = () => {
 
@@ -20,7 +19,7 @@ const HomePage = () => {
             <Heading mb={2}>Latest Updates</Heading>
             <hr />
             <Box mt={2}>
-                {post.data.length > 0 && post.data.map(post => <SinglePost post={post} key={post.id} />)}
+                {post.data.length > 0 && <Posts posts={post.data} />}
             </Box>
         </Box>
     )
