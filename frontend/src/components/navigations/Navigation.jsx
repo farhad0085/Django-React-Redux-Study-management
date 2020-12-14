@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { Box, Heading, Flex, Text, Button } from "@chakra-ui/react";
 import MenuIcon from './MenuIcon';
+import { AddIcon } from "@chakra-ui/icons";
 
 const NavItem = ({ children }) => (
     <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
@@ -54,9 +55,14 @@ const Navigation = props => {
                 mt={{ base: 4, md: 0 }}
             >
                 {auth.isAuthenticated ? (
+                    <>
+                    <Button as={NavLink} to="/post/new" leftIcon={<AddIcon />} mr={{ base: 2 }} bg="transparent" border="1px">
+                        Upload
+                    </Button>
                     <Button as={NavLink} to="/logout" mr={{ base: 2 }} bg="transparent" border="1px">
                         Logout
                     </Button>
+                    </>
                 ) : (
                         <>
                             <Button as={NavLink} to="/login" mr={{ base: 2 }} bg="transparent" border="1px">

@@ -9,6 +9,8 @@ from .serializers import (
     PostSerializer
 )
 from django_filters import rest_framework as filters
+from rest_framework import filters as drf_filters
+
 
 class SemesterViewSet(ModelViewSet):
     queryset = Semester.objects.all()
@@ -38,5 +40,13 @@ class BookViewSet(ModelViewSet):
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend, drf_filters.SearchFilter, drf_filters.OrderingFilter)
     filterset_fields = ('course', 'semester')
+    ordering_fields = '__all__'
+    search_fields = ['title', 'body']
+
+    # default ordering
+    ordering = ['-id']
+
+    def perform_create(self, serializer):
+        serializer.save(posted_by=self.request.user)

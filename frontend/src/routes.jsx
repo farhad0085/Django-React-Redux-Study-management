@@ -11,6 +11,7 @@ import ForgetPasswordPage from './pages/auth/ForgetPasswordPage'
 import CreateCourse from './pages/course/CreateCourse'
 import LogoutPage from './pages/auth/LogoutPage'
 import { useSelector } from 'react-redux'
+import CreatePost from './pages/post/CreatePost'
 
 
 const routes = () => {
@@ -23,6 +24,9 @@ const routes = () => {
             <Route path="/courses" exact component={CoursePage} />
             <PrivateRoute path="/course/new" exact component={CreateCourse} />
             <Route path="/courses/:courseId/:courseCode/:courseTitle" component={IndividualCoursePage} />
+            <PrivateRoute path="/post/new" exact component={CreatePost} />
+
+            {/* auth routes */}
             <GuestRoute path="/login" component={LoginPage} />
             <GuestRoute path="/register" component={RegisterPage} />
             <GuestRoute path="/forget-password" component={ForgetPasswordPage} />

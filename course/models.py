@@ -32,7 +32,7 @@ class Picture(models.Model):
 
 
 class Question(models.Model):
-    pictures = models.ManyToManyField(Picture)
+    pictures = models.ManyToManyField(Picture, related_name="questions")
     year = models.IntegerField(default=datetime.datetime.today().year)
     course_teacher = models.CharField(max_length=100)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -51,10 +51,11 @@ class Book(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=True)
     body = models.TextField(blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='posts')
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='posts')
+    books = models.ManyToManyField(Book, related_name="posts", blank=True)
     posted_by = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
