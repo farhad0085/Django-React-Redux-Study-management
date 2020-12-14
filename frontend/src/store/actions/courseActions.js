@@ -22,3 +22,14 @@ export const getCourse = (courseId) => dispatch => {
         dispatch({type: Types.COURSE_DATA_LOAD_ERROR, payload: error.response.data })
     })
 }
+
+
+export const getAllCourse = () => dispatch => {
+    axios.get('http://127.0.0.1:8000/api/courses/')
+    .then(res => {
+        dispatch({type: Types.COURSE_DATA_LOADED, payload: res.data })
+    })
+    .catch(error => {
+        dispatch({type: Types.COURSE_DATA_LOAD_ERROR, payload: error.response.data })
+    })
+}
