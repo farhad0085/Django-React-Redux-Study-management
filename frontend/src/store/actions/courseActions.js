@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from '../../utils/axios'
 import * as Types from './actionTypes'
 
 
 export const createCourse = (courseData) => dispatch => {
     
-    axios.post("http://127.0.0.1:8000/api/courses/", courseData)
+    axios.post("/api/courses/", courseData)
         .then(res => {
             dispatch({type: Types.COURSE_CREATED, payload: res.data })
         })
@@ -14,7 +14,7 @@ export const createCourse = (courseData) => dispatch => {
 }
 
 export const getCourse = (courseId) => dispatch => {
-    axios.get(`http://127.0.0.1:8000/api/courses/${courseId}`)
+    axios.get(`/api/courses/${courseId}`)
     .then(res => {
         dispatch({type: Types.COURSE_DATA_LOADED, payload: res.data })
     })
@@ -25,7 +25,7 @@ export const getCourse = (courseId) => dispatch => {
 
 
 export const getAllCourse = () => dispatch => {
-    axios.get('http://127.0.0.1:8000/api/courses/')
+    axios.get('/api/courses/')
     .then(res => {
         dispatch({type: Types.COURSE_DATA_LOADED, payload: res.data })
     })

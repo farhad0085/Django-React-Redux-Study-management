@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from '../../utils/axios'
 import * as Types from './actionTypes'
 import { getHeaders} from '../../utils'
 
 
 export const login = (loginCreds, history) => dispatch => {
-    axios.post("http://127.0.0.1:8000/api/auth/login/", loginCreds)
+    axios.post("/auth/login/", loginCreds)
         .then(res => {
             localStorage.setItem("userToken", res.data.key)
             dispatch({type: Types.USER_LOGGED_IN })
@@ -17,7 +17,7 @@ export const login = (loginCreds, history) => dispatch => {
 
 export const logout = () => dispatch => {
     
-    axios.post("http://127.0.0.1:8000/api/auth/logout/", {headers: getHeaders()})
+    axios.post("/auth/logout/", {headers: getHeaders()})
         .then(res => {
             localStorage.removeItem("userToken")
             dispatch({type: Types.USER_LOGGED_OUT })
