@@ -1,5 +1,12 @@
 ## Available Scripts
 
+In the project directory, run
+```
+virtualenv venv
+source venv/Scripts/activate
+python manage.py runserver
+```
+
 In the  `frontend` directory, you can run:
 
 ### `yarn start`
