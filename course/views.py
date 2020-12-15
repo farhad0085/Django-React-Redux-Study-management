@@ -15,11 +15,13 @@ from rest_framework import filters as drf_filters
 class SemesterViewSet(ModelViewSet):
     queryset = Semester.objects.all()
     serializer_class = SemesterSerializer
+    pagination_class = None
 
 
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    pagination_class = None
 
 
 class PictureViewSet(ModelViewSet):

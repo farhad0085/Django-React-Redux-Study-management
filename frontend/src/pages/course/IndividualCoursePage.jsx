@@ -18,7 +18,7 @@ const IndividualCoursePage = (props) => {
     }, [dispatch, courseId])
 
     return (
-        <PostArchive posts={post.data} title={`Updates from - ${courseTitle} - (${courseCode})`} />
+        <PostArchive postData={post} title={`Updates from - ${courseTitle} - (${courseCode})`} />
     )
 
 }

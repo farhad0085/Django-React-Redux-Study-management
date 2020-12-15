@@ -2,7 +2,9 @@ import * as Types from "../actions/actionTypes";
 
 const initialState = {
 	data: [],
-	errors: {},
+    errors: {},
+    next: null,
+    previous: null
 };
 
 function postReducer(state = initialState, action) {
@@ -10,7 +12,9 @@ function postReducer(state = initialState, action) {
 		case Types.POST_DATA_LOADED: {
 			return {
 				...state,
-				data: action.payload,
+				data: action.payload.results,
+				next: action.payload.next,
+				previous: action.payload.previous
 			};
 		}
 		case Types.POST_CREATED: {

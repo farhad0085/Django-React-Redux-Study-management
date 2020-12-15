@@ -14,7 +14,7 @@ const HomePage = () => {
     }, [dispatch])
 
     return (
-        <PostArchive posts={post.data} title="Latest Updates" />
+        <PostArchive postData={post} title="Latest Updates" />
     )
 
 }

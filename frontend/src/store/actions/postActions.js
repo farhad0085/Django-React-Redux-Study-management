@@ -4,16 +4,7 @@ import { getHeaders } from "../../utils/index";
 
 export const getAllPosts = (filters) => dispatch => {
 
-    let filter = "?"
-
-    if(filters){
-        if(filters.course){
-            filter += `course=${filters.course}&`
-        }
-        if(filters.semester){
-            filter += `semester=${filters.semester}&`
-        }
-    }
+    const filter = removeEndSign(buildFilter(filters))
 
     axios.get(`/posts/${filter}`)
     .then(res => {
@@ -34,4 +25,43 @@ export const createPost = (postData) => dispatch => {
             console.log(error.response.data);
             dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
         })
+}
+
+
+export const loadPage = (filters, page="next") => (dispatch, getState) => {
+
+    const prevState = getState().post
+
+    const filter = removeEndSign(buildFilter(filters))
+
+    axios.get(`${prevState[page]}${filter}`)
+    .then(res => {
+        dispatch({type: Types.POST_DATA_LOADED, payload: res.data })
+    })
+    .catch(error => {
+        dispatch({type: Types.POST_DATA_LOAD_ERROR, payload: error.response.data })
+    })
+}
+
+
+function buildFilter(filters){
+    let filter = "?"
+
+    if(filters){
+        if(filters.course){
+            filter += `course=${filters.course}&`
+        }
+        if(filters.semester){
+            filter += `semester=${filters.semester}&`
+        }
+    }
+    return filter
+}
+
+function removeEndSign(url){
+    const lastChar = url.charAt(url.length-1)
+    if(lastChar === '?' || lastChar === '&'){
+        url = url.slice(0, url.length-1);
+    }
+    return url;
 }
