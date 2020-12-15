@@ -7,6 +7,7 @@ import SubmitButton from '../../components/helpers/SubmitButton'
 import FormField from '../../components/helpers/FormField'
 import DismissableAlert from '../../components/helpers/DismissableAlert'
 import { createPost } from "../../store/actions/postActions";
+import Loading from '../../components/helpers/Loading';
 
 const CreatePost = () => {
 
@@ -57,6 +58,7 @@ const CreatePost = () => {
                     errorMsg={postData.errors.body && postData.errors.body[0]}
                 />
 
+                {courseData.data.length > 0 ? (
                 <FormField
                     id="semester"
                     label="Semester"
@@ -68,8 +70,9 @@ const CreatePost = () => {
                 >
                     {semesterData.data.map(semester => <option key={semester.id} value={semester.id}>{semester.full_name}</option>)}
                 </FormField>
+                ) : <Loading /> }
 
-                {courseData.data.length > 0 && (
+                {courseData.data.length > 0 ? (
                     <FormField
                         id="course"
                         label="Course"
@@ -81,7 +84,7 @@ const CreatePost = () => {
                     >
                         {courseData.data.map(course => <option key={course.id} value={course.id}>{course.title}</option>)}
                     </FormField>
-                )}
+                ): <Loading />}
 
                 <SubmitButton title="Create Course" />
             </form>

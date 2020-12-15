@@ -4,7 +4,7 @@ import * as Types from './actionTypes'
 
 export const createCourse = (courseData) => dispatch => {
     
-    axios.post("/api/courses/", courseData)
+    axios.post("/courses/", courseData)
         .then(res => {
             dispatch({type: Types.COURSE_CREATED, payload: res.data })
         })
@@ -14,7 +14,7 @@ export const createCourse = (courseData) => dispatch => {
 }
 
 export const getCourse = (courseId) => dispatch => {
-    axios.get(`/api/courses/${courseId}`)
+    axios.get(`/courses/${courseId}`)
     .then(res => {
         dispatch({type: Types.COURSE_DATA_LOADED, payload: res.data })
     })
@@ -25,7 +25,7 @@ export const getCourse = (courseId) => dispatch => {
 
 
 export const getAllCourse = () => dispatch => {
-    axios.get('/api/courses/')
+    axios.get('/courses/')
     .then(res => {
         dispatch({type: Types.COURSE_DATA_LOADED, payload: res.data })
     })
