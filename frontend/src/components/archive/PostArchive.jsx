@@ -4,6 +4,7 @@ import Posts from '../post/Posts';
 import Pagination from '../helpers/Pagination';
 import CoursePage from '../../pages/course/CoursePage'
 import SemesterPage from '../../pages/semester/SemesterPage'
+import Loading from "../helpers/Loading";
 
 const PostArchive = ({ title, postData }) => {
 
@@ -18,7 +19,7 @@ const PostArchive = ({ title, postData }) => {
                 <Heading size="md" mb={2}>{title}</Heading>
                 <hr />
                 <Box mt={2}>
-                    {posts.length > 0 && <Posts posts={posts} />}
+                    {posts.length > 0 ? <Posts posts={posts} /> : <Loading />}
                 </Box>
 
                 {/* Pagination */}

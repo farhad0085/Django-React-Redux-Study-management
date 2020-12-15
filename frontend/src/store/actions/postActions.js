@@ -3,6 +3,8 @@ import * as Types from './actionTypes'
 import { getHeaders } from "../../utils/index";
 
 export const getAllPosts = (filters) => dispatch => {
+    
+    dispatch({type: Types.POST_DATA_LOADING, payload: true})
 
     const filter = removeEndSign(buildFilter(filters))
 
@@ -13,6 +15,8 @@ export const getAllPosts = (filters) => dispatch => {
     .catch(error => {
         dispatch({type: Types.POST_DATA_LOAD_ERROR, payload: error.response.data })
     })
+    dispatch({type: Types.POST_DATA_LOADING, payload: false})
+
 }
 
 export const createPost = (postData) => dispatch => {

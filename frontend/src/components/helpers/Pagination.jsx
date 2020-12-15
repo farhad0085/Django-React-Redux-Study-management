@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 const Pagination = ({ postData }) => {
 
     const { next, previous } = postData;
-    console.log(next, previous);
 
     const dispatch = useDispatch()
 

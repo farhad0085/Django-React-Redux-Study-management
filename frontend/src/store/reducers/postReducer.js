@@ -4,7 +4,8 @@ const initialState = {
 	data: [],
     errors: {},
     next: null,
-    previous: null
+    previous: null,
+    loading: true,
 };
 
 function postReducer(state = initialState, action) {
@@ -34,6 +35,13 @@ function postReducer(state = initialState, action) {
 				...state,
 				data: {},
 				error: action.payload,
+			};
+		}
+		case Types.POST_DATA_LOADING: {
+
+            return {
+				...state,
+				loading: action.payload,
 			};
 		}
 		default:
