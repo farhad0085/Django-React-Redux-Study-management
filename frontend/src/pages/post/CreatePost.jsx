@@ -70,7 +70,7 @@ const CreatePost = () => {
                 >
                     {semesterData.data.map(semester => <option key={semester.id} value={semester.id}>{semester.full_name}</option>)}
                 </FormField>
-                ) : <Loading /> }
+                ) : <Loading skeleton /> }
 
                 {courseData.data.length > 0 ? (
                     <FormField
@@ -84,7 +84,7 @@ const CreatePost = () => {
                     >
                         {courseData.data.map(course => <option key={course.id} value={course.id}>{course.title}</option>)}
                     </FormField>
-                ): <Loading />}
+                ): <Loading skeleton />}
 
                 <SubmitButton title="Create Course" />
             </form>

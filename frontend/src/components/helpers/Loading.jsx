@@ -1,12 +1,20 @@
 import React from 'react'
+import { Skeleton } from "@chakra-ui/react";
+import { BeatLoader } from "react-spinners";
 
+const Loading = ({ skeleton, ...rest }) => {
 
-const Loading = () => {
+    if (skeleton) {
+        return (
+            <Skeleton {...rest} height="20px" />
+        )
+    }
 
-    return (
-        <h1>Loading</h1>
-    )
-
+    else {
+        return (
+            <BeatLoader {...rest} />
+        )
+    }
 }
 
 
