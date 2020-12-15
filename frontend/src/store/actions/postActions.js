@@ -11,11 +11,12 @@ export const getAllPosts = (filters) => dispatch => {
     axios.get(`/posts/${filter}`)
     .then(res => {
         dispatch({type: Types.POST_DATA_LOADED, payload: res.data })
+        dispatch({type: Types.POST_DATA_LOADING, payload: false})
     })
     .catch(error => {
         dispatch({type: Types.POST_DATA_LOAD_ERROR, payload: error.response.data })
+        dispatch({type: Types.POST_DATA_LOADING, payload: false})
     })
-    dispatch({type: Types.POST_DATA_LOADING, payload: false})
 
 }
 
@@ -33,6 +34,7 @@ export const createPost = (postData) => dispatch => {
 
 
 export const loadPage = (filters, page="next") => (dispatch, getState) => {
+    dispatch({type: Types.POST_DATA_LOADING, payload: true})
 
     const prevState = getState().post
 
@@ -41,10 +43,13 @@ export const loadPage = (filters, page="next") => (dispatch, getState) => {
     axios.get(`${prevState[page]}${filter}`)
     .then(res => {
         dispatch({type: Types.POST_DATA_LOADED, payload: res.data })
+        dispatch({type: Types.POST_DATA_LOADING, payload: false})
     })
     .catch(error => {
         dispatch({type: Types.POST_DATA_LOAD_ERROR, payload: error.response.data })
+        dispatch({type: Types.POST_DATA_LOADING, payload: false})
     })
+
 }
 
 
