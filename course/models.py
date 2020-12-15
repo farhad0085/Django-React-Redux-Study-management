@@ -23,7 +23,7 @@ class Course(models.Model):
 
 class Picture(models.Model):
     description = models.TextField(blank=True)
-    picture = models.ImageField(upload_to="media/pictures/", blank=False, null=False)
+    picture = models.ImageField(upload_to="pictures", blank=False, null=False)
     uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
     created_date = models.DateTimeField(auto_now_add=True)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
@@ -47,7 +47,7 @@ class Question(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=500, blank=True, null=True, default="title not found")
-    book = models.FileField(upload_to="media/books", blank=False, null=False)
+    book = models.FileField(upload_to="books", blank=False, null=False)
     description = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
