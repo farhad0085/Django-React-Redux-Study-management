@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Flex, Spacer } from "@chakra-ui/react";
 import { loadPage } from "../../store/actions/postActions";
 import { useDispatch } from "react-redux";
 
@@ -13,12 +13,15 @@ const Pagination = ({ postData }) => {
 
     return (
         <Box mt={2}>
-            <Button onClick={() => dispatch(loadPage({}, "previous"))} disabled={!previous} mr={{ base: 2 }} bg="transparent" border="1px">
-                Previous
+            <Flex>
+                <Button onClick={() => dispatch(loadPage({}, "previous"))} disabled={!previous} mr={{ base: 2 }} bg="transparent" border="1px">
+                    Previous
             </Button>
-            <Button onClick={() => dispatch(loadPage({}, "next"))} disabled={!next} mr={{ base: 2 }} bg="transparent" border="1px">
-                Next
+                <Spacer />
+                <Button onClick={() => dispatch(loadPage({}, "next"))} disabled={!next} bg="transparent" border="1px">
+                    Next
             </Button>
+            </Flex>
         </Box>
     )
 
