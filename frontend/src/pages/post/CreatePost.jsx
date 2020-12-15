@@ -59,18 +59,18 @@ const CreatePost = () => {
                 />
 
                 {courseData.data.length > 0 ? (
-                <FormField
-                    id="semester"
-                    label="Semester"
-                    type="select"
-                    value={semester.id}
-                    isInvalid={!!postData.errors.semester}
-                    onChange={setSemester}
-                    errorMsg={postData.errors.semester && postData.errors.semester[0]}
-                >
-                    {semesterData.data.map(semester => <option key={semester.id} value={semester.id}>{semester.full_name}</option>)}
-                </FormField>
-                ) : <Loading skeleton /> }
+                    <FormField
+                        id="semester"
+                        label="Semester"
+                        type="select"
+                        value={semester.id}
+                        isInvalid={!!postData.errors.semester}
+                        onChange={setSemester}
+                        errorMsg={postData.errors.semester && postData.errors.semester[0]}
+                    >
+                        {semesterData.data.map(semester => <option key={semester.id} value={semester.id}>{semester.full_name}</option>)}
+                    </FormField>
+                ) : <Loading skeleton height="20px" />}
 
                 {courseData.data.length > 0 ? (
                     <FormField
@@ -84,7 +84,7 @@ const CreatePost = () => {
                     >
                         {courseData.data.map(course => <option key={course.id} value={course.id}>{course.title}</option>)}
                     </FormField>
-                ): <Loading skeleton />}
+                ) : <Loading skeleton height="20px" />}
 
                 <SubmitButton title="Create Course" />
             </form>

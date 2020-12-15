@@ -6,7 +6,7 @@ const Loading = ({ skeleton, ...rest }) => {
 
     if (skeleton) {
         return (
-            <Skeleton {...rest} height="20px" />
+            <Skeleton {...rest} />
         )
     }
 
