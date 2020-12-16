@@ -19,6 +19,7 @@ const CreatePost = () => {
 
     const [semester, setSemester] = useState(1)
     const [course, setCourse] = useState(1)
+    const [courses, setCourses] = useState([])
     const [body, setBody] = useState("")
     const [postType, setPostType] = useState("book"); // options -> book, question, classNote
 
@@ -38,7 +39,6 @@ const CreatePost = () => {
 
         dispatch(createPost(data))
 
-        console.log("Errors", postData.errors);
 
         if (Object.keys(postData.errors).length === 0) {
             console.log("no error");
@@ -50,6 +50,19 @@ const CreatePost = () => {
         }
     }
 
+    useEffect(() => {
+        semesterChangeHandler(1)
+        // eslint-disable-next-line
+    }, [courseData])
+
+    const semesterChangeHandler = value => {
+        // set semester first
+        value = parseInt(value)
+        setSemester(value);
+
+        const allCourse = courseData.data.length > 0 ? courseData.data : [];
+        setCourses(allCourse.filter(course => course.semester === value))
+    }
 
     return (
         <BaseFormCard title="Upload materials">
@@ -85,7 +98,7 @@ const CreatePost = () => {
                         type="select"
                         value={semester}
                         isInvalid={!!postData.errors.semester}
-                        onChange={setSemester}
+                        onChange={semesterChangeHandler}
                         errorMsg={postData.errors.semester && postData.errors.semester[0]}
                     >
                         {semesterData.data.map(semester => <option key={semester.id} value={semester.id}>{semester.full_name}</option>)}
@@ -102,7 +115,7 @@ const CreatePost = () => {
                         onChange={setCourse}
                         errorMsg={postData.errors.course && postData.errors.course[0]}
                     >
-                        {courseData.data.map(course => <option key={course.id} value={course.id}>{course.title}</option>)}
+                        {courses.map(course => <option key={course.id} value={course.id}>{course.title}</option>)}
                     </FormField>
                 ) : <Loading skeleton height="20px" />}
 
