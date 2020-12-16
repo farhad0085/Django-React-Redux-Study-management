@@ -5,6 +5,7 @@ import { getHeaders } from "../../utils/index";
 export const getAllPosts = (filters) => dispatch => {
     
     dispatch({type: Types.POST_DATA_LOADING, payload: true})
+    dispatch({type: Types.POST_CREATED, payload: false })
 
     const filter = removeEndSign(buildFilter(filters))
 
@@ -21,19 +22,24 @@ export const getAllPosts = (filters) => dispatch => {
 }
 
 export const createPost = (postData) => dispatch => {
+    dispatch({type: Types.POST_CREATE_LOADING, payload: true })
+    dispatch({type: Types.POST_CREATED, payload: false })
     
     axios.post("/posts/", postData, {headers: getHeaders()})
         .then(res => {
             dispatch({type: Types.POST_CREATED, payload: res.data })
+            dispatch({type: Types.POST_CREATE_LOADING, payload: false })
         })
         .catch(error => {
             dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
+            dispatch({type: Types.POST_CREATE_LOADING, payload: false })
         })
 }
 
 
 export const loadPage = (filters, page="next") => (dispatch, getState) => {
     dispatch({type: Types.POST_DATA_LOADING, payload: true})
+    dispatch({type: Types.POST_CREATED, payload: false })
 
     const prevState = getState().post
 

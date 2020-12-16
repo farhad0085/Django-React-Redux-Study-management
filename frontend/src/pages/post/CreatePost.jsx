@@ -106,7 +106,7 @@ const CreatePost = () => {
                     </FormField>
                 ) : <Loading skeleton height="20px" />}
 
-                <SubmitButton title="Create Course" />
+                <SubmitButton isLoading={postData.createLoading} loadingText="Posting..." title="Submit" />
             </form>
             {postData.created && <DismissableAlert mt={2} text="Your materials uploaded successfully." type="success" />}
         </BaseFormCard>

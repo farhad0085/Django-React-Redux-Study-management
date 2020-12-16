@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Alert, AlertIcon, CloseButton } from "@chakra-ui/react";
 
-const DismissableAlert = ({ text, ...rest }) => {
+const DismissableAlert = ({ type, text, ...rest }) => {
 
     const [dismiss, setDismiss] = useState(true)
 
@@ -9,7 +9,7 @@ const DismissableAlert = ({ text, ...rest }) => {
     return (
         <>
             { dismiss && (
-                <Alert status="success" {...rest}>
+                <Alert status={type} {...rest}>
                     <AlertIcon />
                     {text}
                     <CloseButton onClick={() => setDismiss(false)} position="absolute" right="8px" top="8px" />
