@@ -6,6 +6,7 @@ const initialState = {
     next: null,
     previous: null,
     loading: true,
+    created: false
 };
 
 function postReducer(state = initialState, action) {
@@ -17,26 +18,30 @@ function postReducer(state = initialState, action) {
 				next: action.payload.next,
 				previous: action.payload.previous
 			};
-		}
-		case Types.POST_CREATED: {
-			return {
-				...state,
-				data: action.payload,
-			};
-		}
-		case Types.POST_CREATE_ERROR: {
-			return {
-				...state,
-				errors: action.payload,
-			};
-		}
-		case Types.POST_DATA_LOAD_ERROR: {
+        }
+        case Types.POST_DATA_LOAD_ERROR: {
 			return {
 				...state,
 				data: {},
 				error: action.payload,
 			};
+        }
+        
+		case Types.POST_CREATED: {
+			return {
+				...state,
+                data: action.payload,
+                created: true
+			};
 		}
+		case Types.POST_CREATE_ERROR: {
+			return {
+				...state,
+                errors: action.payload,
+                created: false
+			};
+		}
+		
 		case Types.POST_DATA_LOADING: {
 
             return {

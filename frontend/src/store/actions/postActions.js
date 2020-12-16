@@ -27,7 +27,6 @@ export const createPost = (postData) => dispatch => {
             dispatch({type: Types.POST_CREATED, payload: res.data })
         })
         .catch(error => {
-            console.log(error.response.data);
             dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
         })
 }

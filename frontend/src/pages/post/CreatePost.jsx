@@ -20,6 +20,7 @@ const CreatePost = () => {
     const [semester, setSemester] = useState(1)
     const [course, setCourse] = useState(1)
     const [body, setBody] = useState("")
+    const [postType, setPostType] = useState("book"); // options -> book, question, classNote
 
     useEffect(() => {
         dispatch(loadSemesters())
@@ -37,9 +38,15 @@ const CreatePost = () => {
 
         dispatch(createPost(data))
 
-        if (Object.keys(courseData.errors).length === 0) {
-            e.target.reset()
+        console.log("Errors", postData.errors);
+
+        if (Object.keys(postData.errors).length === 0) {
+            console.log("no error");
+            setBody("")
+            setPostType("book")
             setSemester(1)
+            setCourse(1)
+
         }
     }
 
@@ -47,6 +54,19 @@ const CreatePost = () => {
     return (
         <BaseFormCard title="Upload materials">
             <form onSubmit={submitHandler}>
+
+                <FormField
+                    id="semester"
+                    label="Type"
+                    type="select"
+                    value={postType}
+                    onChange={setPostType}
+                >
+                    <option value={'book'}>Book</option>
+                    <option value={'question'}>Question</option>
+                    <option value={'classNote'}>Class Note</option>
+                </FormField>
+
                 <FormField
                     id="body"
                     label="Comments (optional)"
@@ -58,12 +78,12 @@ const CreatePost = () => {
                     errorMsg={postData.errors.body && postData.errors.body[0]}
                 />
 
-                {courseData.data.length > 0 ? (
+                {semesterData.data.length > 0 ? (
                     <FormField
                         id="semester"
                         label="Semester"
                         type="select"
-                        value={semester.id}
+                        value={semester}
                         isInvalid={!!postData.errors.semester}
                         onChange={setSemester}
                         errorMsg={postData.errors.semester && postData.errors.semester[0]}
@@ -77,7 +97,7 @@ const CreatePost = () => {
                         id="course"
                         label="Course"
                         type="select"
-                        value={course.id}
+                        value={course}
                         isInvalid={!!postData.errors.course}
                         onChange={setCourse}
                         errorMsg={postData.errors.course && postData.errors.course[0]}
@@ -88,7 +108,7 @@ const CreatePost = () => {
 
                 <SubmitButton title="Create Course" />
             </form>
-            {courseData.created && <DismissableAlert mt={2} text="Course created successfully." type="success" />}
+            {postData.created && <DismissableAlert mt={2} text="Your materials uploaded successfully." type="success" />}
         </BaseFormCard>
     )
 
