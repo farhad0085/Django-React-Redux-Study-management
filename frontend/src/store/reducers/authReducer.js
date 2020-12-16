@@ -2,7 +2,8 @@ import * as Types from '../actions/actionTypes'
 
 const initialState = {
     isAuthenticated: false,
-    loginErrors: {}
+    loginErrors: {},
+    loading: false
 }
 
 function authReducer(state = initialState, action) {
@@ -11,6 +12,12 @@ function authReducer(state = initialState, action) {
             return {
                 isAuthenticated: true,
                 loginErrors: {}
+            }
+        }
+        case Types.USER_LOGIN_LOADING: {
+            return {
+                ...state,
+                loading: action.payload
             }
         }
         case Types.USER_LOGIN_ERROR: {

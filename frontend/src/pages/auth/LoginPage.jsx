@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import BaseFormCard from '../../components/BaseFormCard';
 import { login } from "../../store/actions/authActions";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SubmitButton from '../../components/helpers/SubmitButton';
 import FormField from '../../components/helpers/FormField';
 
 const LoginPage = ({ history }) => {
 
     const dispatch = useDispatch()
-    
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const auth = useSelector(state => state.auth)
 
     const submitHandler = event => {
         event.preventDefault()
@@ -37,7 +39,7 @@ const LoginPage = ({ history }) => {
                     type="password"
                 />
 
-                <SubmitButton title="Login" />
+                <SubmitButton isLoading={auth.loading} loadingText="Logging in..." title="Login" />
             </form>
         </BaseFormCard>
     )

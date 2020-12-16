@@ -4,14 +4,17 @@ import { getHeaders} from '../../utils'
 
 
 export const login = (loginCreds, history) => dispatch => {
+    dispatch({type: Types.USER_LOGIN_LOADING, payload: true})
     axios.post("/auth/login/", loginCreds)
         .then(res => {
             localStorage.setItem("userToken", res.data.key)
             dispatch({type: Types.USER_LOGGED_IN })
+            dispatch({type: Types.USER_LOGIN_LOADING, payload: false})
             history.push("/")
         })
         .catch(error => {
             dispatch({type: Types.USER_LOGIN_ERROR, payload: error.response.data })
+            dispatch({type: Types.USER_LOGIN_LOADING, payload: false})
         })
 }
 
