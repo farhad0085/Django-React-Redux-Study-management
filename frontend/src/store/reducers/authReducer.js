@@ -11,7 +11,8 @@ function authReducer(state = initialState, action) {
         case Types.USER_LOGGED_IN: {
             return {
                 isAuthenticated: true,
-                loginErrors: {}
+                loginErrors: {},
+                loading: false
             }
         }
         case Types.USER_LOGIN_LOADING: {
@@ -22,12 +23,15 @@ function authReducer(state = initialState, action) {
         }
         case Types.USER_LOGIN_ERROR: {
             return {
+                ...state,
                 isAuthenticated: false,
                 loginErrors: action.payload
             }
         }
         case Types.USER_LOGGED_OUT: {
             return {
+                loginErrors: {},
+                loading: false,
                 isAuthenticated: false
             }
         }

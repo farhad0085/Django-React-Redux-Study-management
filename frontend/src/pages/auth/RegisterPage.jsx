@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import BaseFormCard from '../../components/BaseFormCard';
 import SubmitButton from '../../components/helpers/SubmitButton';
 import FormField from '../../components/helpers/FormField';
+import DismissableAlert from '../../components/helpers/DismissableAlert';
 
 const RegisterPage = () => {
 
@@ -58,7 +59,8 @@ const RegisterPage = () => {
                     type="password"
                 />
 
-                <SubmitButton title="Register" />
+                <SubmitButton disabled title="Register" />
+                <DismissableAlert mt={2} text="Registration is currently unavailable!" type="error" />
             </form>
         </BaseFormCard>
     )

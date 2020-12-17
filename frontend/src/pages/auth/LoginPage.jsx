@@ -4,6 +4,7 @@ import { login } from "../../store/actions/authActions";
 import { useDispatch, useSelector } from 'react-redux'
 import SubmitButton from '../../components/helpers/SubmitButton';
 import FormField from '../../components/helpers/FormField';
+import DismissableAlert from '../../components/helpers/DismissableAlert';
 
 const LoginPage = ({ history }) => {
 
@@ -41,6 +42,7 @@ const LoginPage = ({ history }) => {
 
                 <SubmitButton isLoading={auth.loading} loadingText="Logging in..." title="Login" />
             </form>
+            {Object.keys(auth.loginErrors).length > 0 && <DismissableAlert mt={2} text="Unable to login with the credentials!" type="error" />}
         </BaseFormCard>
     )
 }
