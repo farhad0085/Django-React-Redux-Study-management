@@ -8,6 +8,7 @@ import FormField from '../../components/helpers/FormField'
 import DismissableAlert from '../../components/helpers/DismissableAlert'
 import { createPost } from "../../store/actions/postActions";
 import Loading from '../../components/helpers/Loading';
+import DragDropUpload from '../../components/helpers/DragDropUpload';
 
 const CreatePost = () => {
 
@@ -22,6 +23,12 @@ const CreatePost = () => {
     const [courses, setCourses] = useState([])
     const [body, setBody] = useState("")
     const [postType, setPostType] = useState("book"); // options -> book, question, classNote
+    const [pictures, setPictures] = useState([]);
+    const [fileTypes, setFileTypes] = useState({
+        question: 'image/jpeg, image/png, image/webp',
+        book: 'application/pdf',
+        classNote: 'application/pdf'
+    })
 
     useEffect(() => {
         dispatch(loadSemesters())
@@ -80,15 +87,9 @@ const CreatePost = () => {
                     <option value={'classNote'}>Class Note</option>
                 </FormField>
 
-                <FormField
-                    id="body"
-                    label="Comments (optional)"
-                    type="textarea"
-                    placeholder="Write something about the upload..."
-                    value={body}
-                    isInvalid={!!postData.errors.body}
-                    onChange={setBody}
-                    errorMsg={postData.errors.body && postData.errors.body[0]}
+                <DragDropUpload
+                    onChange={setPictures}
+                    allowedFileType={fileTypes[postType]}
                 />
 
                 {semesterData.data.length > 0 ? (
@@ -118,6 +119,17 @@ const CreatePost = () => {
                         {courses.map(course => <option key={course.id} value={course.id}>{course.title}</option>)}
                     </FormField>
                 ) : <Loading skeleton height="20px" />}
+
+                <FormField
+                    id="body"
+                    label="Comments (optional)"
+                    type="textarea"
+                    placeholder="Write something about the upload..."
+                    value={body}
+                    isInvalid={!!postData.errors.body}
+                    onChange={setBody}
+                    errorMsg={postData.errors.body && postData.errors.body[0]}
+                />
 
                 <SubmitButton isLoading={postData.createLoading} loadingText="Posting..." title="Submit" />
             </form>
