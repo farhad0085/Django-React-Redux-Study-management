@@ -31,7 +31,7 @@ const Navigation = props => {
             mb={4}
         >
             <Flex align="center" mr={5}>
-                <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
+                <Heading as="h1" size="lg" letterSpacing={"0.2rem"}>
                     <Link to="/">Study Management</Link>
                 </Heading>
             </Flex>
