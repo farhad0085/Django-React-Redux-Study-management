@@ -3,4 +3,5 @@ __pycache__
 .env
 media/books/*
 media/pictures/*
+media/classnotes/*
 .env

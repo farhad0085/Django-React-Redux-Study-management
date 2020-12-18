@@ -13,12 +13,34 @@ const SinglePost = ({ post }) => {
             <Heading size="sm" my={2}>Attachments</Heading>
             <hr/>
             <List mt={2} spacing={3}>
-                {post.pictures.map(picture => {
+                {post.questions.map(question => {
+                    return question.pictures.map(picture => {
+                        return (
+                            <ListItem key={picture.id}>
+                                <ListIcon as={CheckCircleIcon} color="green.500" />
+                                <Link to={`/picture/${picture.picture}`}>
+                                    {picture.picture}
+                                </Link>
+                            </ListItem>
+                        )
+                    })
+                })}
+                {post.books.map(book => {
                     return (
-                        <ListItem key={picture.id}>
+                        <ListItem key={book.id}>
                             <ListIcon as={CheckCircleIcon} color="green.500" />
-                            <Link to={`/picture/${picture.picture}`}>
-                                {picture.picture}
+                            <Link to={`/book/${book.file}`}>
+                                {book.file}
+                            </Link>
+                        </ListItem>
+                    )
+                })}
+                {post.classnotes.map(note => {
+                    return (
+                        <ListItem key={note.id}>
+                            <ListIcon as={CheckCircleIcon} color="green.500" />
+                            <Link to={`/note/${note.file}`}>
+                                {note.file}
                             </Link>
                         </ListItem>
                     )

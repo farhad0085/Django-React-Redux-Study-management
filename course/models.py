@@ -28,7 +28,6 @@ class Picture(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='pictures')
-    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='pictures')
 
     def __str__(self):
         return self.picture.url
@@ -47,7 +46,7 @@ class Question(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=500, blank=True, null=True, default="title not found")
-    book = models.FileField(upload_to="books", blank=False, null=False)
+    file = models.FileField(upload_to="books", blank=False, null=False)
     description = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
@@ -58,6 +57,7 @@ class Book(models.Model):
         return self.title or "title not found"
 
 class ClassNote(models.Model):
+    title = models.CharField(max_length=500, blank=True, null=True, default="title not found")
     file = models.FileField(upload_to="classnotes", blank=False, null=False)
     description = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -74,6 +74,8 @@ class Post(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='posts')
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='posts')
     books = models.ManyToManyField(Book, related_name="posts", blank=True)
+    classnotes = models.ManyToManyField(ClassNote, related_name="posts", blank=True)
+    questions = models.ManyToManyField(Question, related_name="posts", blank=True)
     posted_by = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
 

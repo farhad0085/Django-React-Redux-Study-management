@@ -59,7 +59,7 @@ const Navigation = props => {
                     <Button as={NavLink} to="/post/new" leftIcon={<AddIcon />} mr={{ base: 2 }} bg="transparent" border="1px">
                         Upload
                     </Button>
-                    <Button as={NavLink} to="/logout" mr={{ base: 2 }} bg="transparent" border="1px">
+                    <Button isLoading={auth.loading} as={NavLink} to="/logout" mr={{ base: 2 }} bg="transparent" border="1px">
                         Logout
                     </Button>
                     </>

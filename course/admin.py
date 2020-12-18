@@ -22,7 +22,7 @@ class PictureAdmin(admin.ModelAdmin):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'book', 'get_short_description', 'uploaded_by', 'semester', 'course', 'created_date']
+    list_display = ['title', 'file', 'get_short_description', 'uploaded_by', 'semester', 'course', 'created_date']
 
     def get_short_description(self, instance):
         return instance.description[:30]

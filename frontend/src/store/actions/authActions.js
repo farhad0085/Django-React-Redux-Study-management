@@ -19,13 +19,16 @@ export const login = (loginCreds, history) => dispatch => {
 }
 
 export const logout = () => dispatch => {
+    dispatch({type: Types.USER_LOGIN_LOADING, payload: true})
     
     axios.post("/auth/logout/", {headers: getHeaders()})
         .then(res => {
             localStorage.removeItem("userToken")
+            dispatch({type: Types.USER_LOGIN_LOADING, payload: true})
             dispatch({type: Types.USER_LOGGED_OUT })
         })
         .catch(error => {
             dispatch({type: Types.USER_LOGOUT_ERROR, payload: error.response.data })
+            dispatch({type: Types.USER_LOGIN_LOADING, payload: true})
         })
 }

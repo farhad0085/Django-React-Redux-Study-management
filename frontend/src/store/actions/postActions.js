@@ -35,7 +35,7 @@ export const createPost = (postData) => dispatch => {
 
         books.forEach(book => {
             const form_data = new FormData();
-            form_data.append('book', book, book.name);
+            form_data.append('file', book, book.name);
             form_data.append('title', book.name);
             form_data.append('course', course);
             form_data.append('semester', semester);
@@ -53,19 +53,44 @@ export const createPost = (postData) => dispatch => {
                         dispatch({type: Types.POST_CREATED, payload: res.data })
                         dispatch({type: Types.POST_CREATE_LOADING, payload: false })
                     })
-                    .catch(error => {
-                        dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
-                        dispatch({type: Types.POST_CREATE_LOADING, payload: false })
-                    })
-
             })
-            .catch((err) => {
-                console.log("All error", err);
+            .catch((error) => {
+                dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
+                dispatch({type: Types.POST_CREATE_LOADING, payload: false })
             });
 
     }
-    else if (postType === 'question'){
-        
+    else if (postType === 'classNote'){
+    
+        const requestArray = [];
+        const books = uploadedFiles;
+
+        books.forEach(book => {
+            const form_data = new FormData();
+            form_data.append('file', book, book.name);
+            form_data.append('description', book.name);
+            form_data.append('course', course);
+            form_data.append('semester', semester);
+    
+            requestArray.push(axios.post("/classnotes/", form_data, {headers: getHeaders({'content-type': 'multipart/form-data'})}))
+        })
+
+
+        Promise.all(requestArray)
+            .then((responses)=>{
+
+                // now create the post
+                axios.post("/posts/", { course, semester, classnotes: responses.map(res => res.data.id) }, {headers: getHeaders()})
+                    .then(res => {
+                        dispatch({type: Types.POST_CREATED, payload: res.data })
+                        dispatch({type: Types.POST_CREATE_LOADING, payload: false })
+                    })
+            })
+            .catch((error) => {
+                dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
+                dispatch({type: Types.POST_CREATE_LOADING, payload: false })
+            });
+
     }
     
 }

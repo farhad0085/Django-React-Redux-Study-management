@@ -21,8 +21,15 @@ class PictureSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
+class ClassNoteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ClassNote
+        fields = '__all__'
+
+
 class PostSerializer(serializers.ModelSerializer):
-    pictures = PictureSerializer(many=True, read_only=True)
 
     class Meta:
         model = Post
@@ -30,7 +37,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     def _build_title(self, data):
         books = data.get('books', None)
-        pictures = data.get('pictures', None)
+        classnotes = data.get('classnotes', None)
         questions = data.get('questions', None)
         request = self.context.get('request', None)
 
@@ -38,12 +45,12 @@ class PostSerializer(serializers.ModelSerializer):
 
         if books:
             title += f"{len(books)} books"
-        elif pictures:
-            title += f"{len(pictures)} pictures"
+        elif classnotes:
+            title += f"{len(classnotes)} classnotes"
         elif questions:
-            title += f"{len(questions)} questions"
+            title += "1 question"
         else:
-            title += "something I don't know"
+            title += "something"
 
         return title
 
@@ -54,6 +61,16 @@ class PostSerializer(serializers.ModelSerializer):
 
     def save(self, **kwargs):
         return super().save(**kwargs)
+
+
+class PostListSerializer(serializers.ModelSerializer):
+    questions = QuestionSerializer(many=True, read_only=True)
+    books = BookSerializer(many=True, read_only=True)
+    classnotes = ClassNoteSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Post
+        fields = '__all__'
 
 
 class CourseSerializer(serializers.ModelSerializer):
@@ -72,11 +89,4 @@ class SemesterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Semester
-        fields = '__all__'
-
-
-class ClassNoteSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = ClassNote
         fields = '__all__'

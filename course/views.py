@@ -7,6 +7,7 @@ from .serializers import (
     BookSerializer,
     PictureSerializer,
     PostSerializer,
+    PostListSerializer,
     ClassNoteSerializer
 )
 from django_filters import rest_framework as filters
@@ -51,7 +52,6 @@ class BookViewSet(ModelViewSet):
 
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all()
-    serializer_class = PostSerializer
     filter_backends = (filters.DjangoFilterBackend,
                        drf_filters.SearchFilter, drf_filters.OrderingFilter)
     filterset_fields = ('course', 'semester')
@@ -63,6 +63,11 @@ class PostViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(posted_by=self.request.user)
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return PostListSerializer
+        return PostSerializer
 
 
 class ClassNoteViewSet(ModelViewSet):
