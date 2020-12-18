@@ -1,7 +1,6 @@
 from collections import OrderedDict
-from typing import Mapping
 from rest_framework import serializers
-from .models import Course, Question, Semester, Book, Picture, Post
+from .models import Course, Question, Semester, Book, Picture, Post, ClassNote
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -73,4 +72,11 @@ class SemesterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Semester
+        fields = '__all__'
+
+
+class ClassNoteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ClassNote
         fields = '__all__'

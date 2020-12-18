@@ -5,7 +5,8 @@ from .views import (
     QuestionViewSet,
     PictureViewSet,
     SemesterViewSet,
-    BookViewSet
+    BookViewSet,
+    ClassNoteViewSet
 )
 from rest_framework.routers import DefaultRouter
 
@@ -16,6 +17,7 @@ router.register("semesters", SemesterViewSet)
 router.register("books", BookViewSet)
 router.register("pictures", PictureViewSet)
 router.register("posts", PostViewSet)
+router.register("classnotes", ClassNoteViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
