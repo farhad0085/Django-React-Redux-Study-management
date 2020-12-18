@@ -92,6 +92,50 @@ export const createPost = (postData) => dispatch => {
             });
 
     }
+
+    else if (postType === 'question'){
+    
+        const requestArray = [];
+        const pictures = uploadedFiles;
+
+        pictures.forEach(picture => {
+            const form_data = new FormData();
+            form_data.append('picture', picture, picture.name);
+            form_data.append('description', picture.name);
+            form_data.append('course', course);
+            form_data.append('semester', semester);
+    
+            requestArray.push(axios.post("/pictures/", form_data, {headers: getHeaders({'content-type': 'multipart/form-data'})}))
+        })
+
+
+        Promise.all(requestArray)
+            .then((responses)=>{
+                axios.post("/questions/", { course, course_teacher: "Someone", semester, pictures: responses.map(res => res.data.id) }, {headers: getHeaders()})
+                    .then((res => {
+                        // now create the post
+                        axios.post("/posts/", { course, semester, questions: [res.data.id] }, {headers: getHeaders()})
+                            .then(res => {
+                                dispatch({type: Types.POST_CREATED, payload: res.data })
+                                dispatch({type: Types.POST_CREATE_LOADING, payload: false })
+                            })
+                            .catch((error) => {
+                                dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
+                                dispatch({type: Types.POST_CREATE_LOADING, payload: false })
+                            });
+                    }))
+                    .catch((error) => {
+                        dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
+                        dispatch({type: Types.POST_CREATE_LOADING, payload: false })
+                    });
+
+            })
+            .catch((error) => {
+                dispatch({type: Types.POST_CREATE_ERROR, payload: error.response.data })
+                dispatch({type: Types.POST_CREATE_LOADING, payload: false })
+            });
+
+    }
     
 }
 

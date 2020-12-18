@@ -19,7 +19,15 @@ class PictureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Picture
         fields = '__all__'
+        
 
+class QuestionListSerializer(serializers.ModelSerializer):
+
+    pictures = PictureSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Question
+        fields = '__all__'
 
 
 class ClassNoteSerializer(serializers.ModelSerializer):
@@ -64,7 +72,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class PostListSerializer(serializers.ModelSerializer):
-    questions = QuestionSerializer(many=True, read_only=True)
+    questions = QuestionListSerializer(many=True, read_only=True)
     books = BookSerializer(many=True, read_only=True)
     classnotes = ClassNoteSerializer(many=True, read_only=True)
 
