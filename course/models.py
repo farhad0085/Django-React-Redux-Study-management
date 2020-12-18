@@ -57,6 +57,17 @@ class Book(models.Model):
     def __str__(self):
         return self.title or "title not found"
 
+class ClassNote(models.Model):
+    file = models.FileField(upload_to="classnotes", blank=False, null=False)
+    description = models.TextField(blank=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    uploaded_by = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='classnotes')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='classnotes')
+
+    def __str__(self):
+        return self.description[:30] or "description not found"
+
 class Post(models.Model):
     title = models.CharField(max_length=200, blank=True)
     body = models.TextField(blank=True)

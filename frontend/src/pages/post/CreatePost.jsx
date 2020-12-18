@@ -23,12 +23,12 @@ const CreatePost = () => {
     const [courses, setCourses] = useState([])
     const [body, setBody] = useState("")
     const [postType, setPostType] = useState("book"); // options -> book, question, classNote
-    const [pictures, setPictures] = useState([]);
-    const [fileTypes, setFileTypes] = useState({
+    const [uploadedFiles, setUploadedFiles] = useState([]);
+    const fileTypes = {
         question: 'image/jpeg, image/png, image/webp',
         book: 'application/pdf',
         classNote: 'application/pdf'
-    })
+    }
 
     useEffect(() => {
         dispatch(loadSemesters())
@@ -39,16 +39,17 @@ const CreatePost = () => {
         e.preventDefault()
 
         const data = {
+            uploadedFiles,
             semester,
             course,
-            body
+            body,
+            postType
         }
 
         dispatch(createPost(data))
 
 
         if (Object.keys(postData.errors).length === 0) {
-            console.log("no error");
             setBody("")
             setPostType("book")
             setSemester(1)
@@ -88,8 +89,9 @@ const CreatePost = () => {
                 </FormField>
 
                 <DragDropUpload
-                    onChange={setPictures}
+                    onChange={setUploadedFiles}
                     allowedFileType={fileTypes[postType]}
+                    postType={postType}
                 />
 
                 {semesterData.data.length > 0 ? (

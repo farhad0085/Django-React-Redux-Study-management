@@ -4,7 +4,7 @@ import { ArrowUpIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import { Button, Box, Center, List, ListItem, ListIcon, FormLabel } from "@chakra-ui/react";
 import { formatFileSize, createUUID } from "../../utils";
 
-const DragDropUpload = ({ onChange, allowedFileType }) => {
+const DragDropUpload = ({ onChange, allowedFileType, postType }) => {
     
     const onDrop = useCallback((acceptedFiles) => {
         setFiles(old => {
@@ -16,6 +16,11 @@ const DragDropUpload = ({ onChange, allowedFileType }) => {
     useEffect(() => {
         onChange(files)
     })
+
+    // whenever postType change, remove all selected files.
+    useEffect(() => {
+        setFiles([]);
+    }, [postType])
 
     const [files, setFiles] = useState([])
 

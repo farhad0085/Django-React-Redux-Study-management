@@ -1,6 +1,7 @@
-export function getHeaders(){
+export function getHeaders(additional){
     return {
-        Authorization: `Token ${localStorage.getItem('userToken')}`
+        Authorization: `Token ${localStorage.getItem('userToken')}`,
+        ...additional
     }
 }
 
@@ -29,4 +30,28 @@ export const formatFileSize = size => {
         formattedFileSize = `${(size / (1024 * 1024 * 1024)).toFixed(2)} GB`;
     }
     return formattedFileSize
+}
+
+
+
+export function buildFilter(filters){
+    let filter = "?"
+
+    if(filters){
+        if(filters.course){
+            filter += `course=${filters.course}&`
+        }
+        if(filters.semester){
+            filter += `semester=${filters.semester}&`
+        }
+    }
+    return filter
+}
+
+export function removeEndSign(url){
+    const lastChar = url.charAt(url.length-1)
+    if(lastChar === '?' || lastChar === '&'){
+        url = url.slice(0, url.length-1);
+    }
+    return url;
 }
