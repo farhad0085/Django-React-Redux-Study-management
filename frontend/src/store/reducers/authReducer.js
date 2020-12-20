@@ -3,7 +3,9 @@ import * as Types from '../actions/actionTypes'
 const initialState = {
     isAuthenticated: false,
     loginErrors: {},
-    loading: false
+    resetPasswordErrors: {},
+    loading: false,
+    passwordResetEmailSent: false
 }
 
 function authReducer(state = initialState, action) {
@@ -15,10 +17,16 @@ function authReducer(state = initialState, action) {
                 loading: false
             }
         }
-        case Types.USER_LOGIN_LOADING: {
+        case Types.AUTH_LOADING: {
             return {
                 ...state,
                 loading: action.payload
+            }
+        }
+        case Types.FORGET_PASSWORD_RESET_EMAIL_SENT: {
+            return {
+                ...state,
+                passwordResetEmailSent: action.payload
             }
         }
         case Types.USER_LOGIN_ERROR: {
