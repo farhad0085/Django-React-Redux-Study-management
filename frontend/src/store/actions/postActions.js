@@ -23,7 +23,7 @@ export const getAllPosts = (filters) => dispatch => {
 
 export const createPost = (postData) => dispatch => {
 
-    const { postType, course, semester, uploadedFiles } = postData;
+    const { postType, body, course, semester, uploadedFiles } = postData;
 
     dispatch({type: Types.POST_CREATE_LOADING, payload: true })
     dispatch({type: Types.POST_CREATED, payload: false })
@@ -48,7 +48,7 @@ export const createPost = (postData) => dispatch => {
             .then((responses)=>{
 
                 // now create the post
-                axios.post("/posts/", { course, semester, books: responses.map(res => res.data.id) }, {headers: getHeaders()})
+                axios.post("/posts/", { course, body, semester, books: responses.map(res => res.data.id) }, {headers: getHeaders()})
                     .then(res => {
                         dispatch({type: Types.POST_CREATED, payload: res.data })
                         dispatch({type: Types.POST_CREATE_LOADING, payload: false })
@@ -80,7 +80,7 @@ export const createPost = (postData) => dispatch => {
             .then((responses)=>{
 
                 // now create the post
-                axios.post("/posts/", { course, semester, classnotes: responses.map(res => res.data.id) }, {headers: getHeaders()})
+                axios.post("/posts/", { course, semester, body, classnotes: responses.map(res => res.data.id) }, {headers: getHeaders()})
                     .then(res => {
                         dispatch({type: Types.POST_CREATED, payload: res.data })
                         dispatch({type: Types.POST_CREATE_LOADING, payload: false })
@@ -114,7 +114,7 @@ export const createPost = (postData) => dispatch => {
                 axios.post("/questions/", { course, course_teacher: "Someone", semester, pictures: responses.map(res => res.data.id) }, {headers: getHeaders()})
                     .then((res => {
                         // now create the post
-                        axios.post("/posts/", { course, semester, questions: [res.data.id] }, {headers: getHeaders()})
+                        axios.post("/posts/", { course, body, semester, questions: [res.data.id] }, {headers: getHeaders()})
                             .then(res => {
                                 dispatch({type: Types.POST_CREATED, payload: res.data })
                                 dispatch({type: Types.POST_CREATE_LOADING, payload: false })
