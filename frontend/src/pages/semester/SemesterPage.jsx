@@ -19,7 +19,7 @@ const SemesterPage = () => {
         <>
             { semesterData.data.length > 0 && (
                 <Box boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
-                    <Heading as="h2" size="md" mb={2}>All Semesters</Heading>
+                    <Heading opacity="0.7" as="h2" size="md" mb={2}>Semesters</Heading>
                     <hr />
                     <List mt={2} spacing={3}>
                         {semesterData.data.map(semester => {

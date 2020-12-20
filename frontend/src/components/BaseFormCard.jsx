@@ -9,7 +9,7 @@ const BaseFormCard = (props) => {
         <Container maxW="xl">
             <Box boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
 
-                <Heading as="h2" size="lg" letterSpacing={"-.1rem"}>{props.title}</Heading>
+                <Heading opacity="0.7" as="h2" size="lg" letterSpacing={"-.1rem"}>{props.title}</Heading>
 
                 <hr />
                 <Box mb={4} mt={4}>

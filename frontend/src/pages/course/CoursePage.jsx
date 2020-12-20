@@ -22,7 +22,7 @@ const CoursePage = () => {
                     {semesterData.data.map(semester => {
                         return (
                             <Box key={semester.id} boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
-                                <Heading as="h2" size="md" mb={2}>Courses of {semester.full_name} ({semester.display_name})</Heading>
+                                <Heading opacity="0.7" as="h2" size="md" mb={2}>Courses of {semester.full_name} ({semester.display_name})</Heading>
                                 <hr />
                                 <List mt={2} spacing={3}>
                                     {semester.courses.map(course => {

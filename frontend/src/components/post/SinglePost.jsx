@@ -25,10 +25,10 @@ const SinglePost = ({ post }) => {
 
     return (
         <Box key={post.id} boxShadow="md" my={6} p="6" rounded="md" bg="white">
-            <Heading size="sm" mb={2}>{post.title}</Heading>
+            <Heading opacity="0.7" size="sm" mb={2}>{post.title}</Heading>
             <hr />
             <Text mt={2}>{post.body}</Text>
-            <Heading size="sm" my={2}>Attachments</Heading>
+            <Heading opacity="0.7" size="sm" my={2}>Attachments</Heading>
             <Wrap>
                 {post.questions.map(question => {
                     return question.pictures.map((picture, index) => {
