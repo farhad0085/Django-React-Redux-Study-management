@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { loadSemesters } from '../../store/actions/semesterAction';
 import { useDispatch, useSelector } from 'react-redux'
 import { Heading, List, ListItem, ListIcon, Box } from "@chakra-ui/react";
@@ -26,9 +26,9 @@ const SemesterPage = () => {
                             return (
                                 <ListItem key={semester.full_name}>
                                     <ListIcon as={CheckCircleIcon} color="green.500" />
-                                    <Link to={`/semesters/${semester.id}/${semester.full_name}/${semester.display_name}`}>
+                                    <NavLink to={`/semesters/${semester.id}/${semester.full_name}/${semester.display_name}`}>
                                         {semester.full_name} - {semester.display_name}
-                                    </Link>
+                                    </NavLink>
                                 </ListItem>
                             )
                         }

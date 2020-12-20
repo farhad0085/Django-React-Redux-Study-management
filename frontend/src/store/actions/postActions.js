@@ -68,6 +68,7 @@ export const createPost = (postData) => dispatch => {
         books.forEach(book => {
             const form_data = new FormData();
             form_data.append('file', book, book.name);
+            form_data.append('title', book.name);
             form_data.append('description', book.name);
             form_data.append('course', course);
             form_data.append('semester', semester);

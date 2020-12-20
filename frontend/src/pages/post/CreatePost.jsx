@@ -84,8 +84,8 @@ const CreatePost = () => {
                     onChange={setPostType}
                 >
                     <option value={'book'}>Book</option>
-                    <option value={'question'}>Question</option>
                     <option value={'classNote'}>Class Note</option>
+                    <option value={'question'}>Question</option>
                 </FormField>
 
                 <DragDropUpload

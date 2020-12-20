@@ -36,7 +36,7 @@ const Navigation = props => {
                 </Heading>
             </Flex>
 
-            <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+            <Box cursor="pointer" display={{ base: "block", md: "none" }} onClick={handleToggle}>
                 <MenuIcon />
             </Box>
 

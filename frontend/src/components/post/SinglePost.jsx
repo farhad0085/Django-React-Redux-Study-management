@@ -4,7 +4,8 @@ import { CheckCircleIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import Loading from '../helpers/Loading';
 import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; 
+import 'react-image-lightbox/style.css';
+import { Link as ChakraLink } from "@chakra-ui/react";
 
 
 const SinglePost = ({ post }) => {
@@ -38,8 +39,10 @@ const SinglePost = ({ post }) => {
                                         onClick={() => imageOnClick(index)}
                                         boxSize="100px"
                                         objectFit="cover"
+                                        cursor="pointer"
                                         src={picture.picture}
                                         alt={picture.picture}
+                                        _hover={{opacity: 0.5}}
                                         fallback={<Loading />}
                                     />
                                 </Box>
@@ -64,9 +67,9 @@ const SinglePost = ({ post }) => {
                     return (
                         <ListItem key={book.id}>
                             <ListIcon as={CheckCircleIcon} color="green.500" />
-                            <Link to={`/book/${book.file}`}>
-                                {book.file}
-                            </Link>
+                            <ChakraLink target="_blank" href={book.file} _hover={{opacity: 0.5}}>
+                                {book.title}
+                            </ChakraLink>
                         </ListItem>
                     )
                 })}
@@ -74,9 +77,9 @@ const SinglePost = ({ post }) => {
                     return (
                         <ListItem key={note.id}>
                             <ListIcon as={CheckCircleIcon} color="green.500" />
-                            <Link to={`/note/${note.file}`}>
-                                {note.file}
-                            </Link>
+                            <ChakraLink target="_blank" href={note.file} _hover={{opacity: 0.5}}>
+                                {note.title}
+                            </ChakraLink>
                         </ListItem>
                     )
                 })}
