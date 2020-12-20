@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { NavLink } from "react-router-dom";
 import { loadSemesters } from '../../store/actions/semesterAction';
 import { useDispatch, useSelector } from 'react-redux'
-import { Heading, List, ListItem, ListIcon, Box } from "@chakra-ui/react";
+import { List, ListItem, ListIcon, Box } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
+import Title from '../../components/helpers/Title';
 
 
 const CoursePage = () => {
@@ -22,7 +23,7 @@ const CoursePage = () => {
                     {semesterData.data.map(semester => {
                         return (
                             <Box key={semester.id} boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
-                                <Heading opacity="0.7" as="h2" size="md" mb={2}>Courses of {semester.full_name} ({semester.display_name})</Heading>
+                                <Title title={`Courses of ${semester.full_name} (${semester.display_name})`} as="h2" />
                                 <hr />
                                 <List mt={2} spacing={3}>
                                     {semester.courses.map(course => {

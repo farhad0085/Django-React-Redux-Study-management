@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Box, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
 import Posts from '../post/Posts';
 import Pagination from '../helpers/Pagination';
 import CoursePage from '../../pages/course/CoursePage';
@@ -18,7 +18,7 @@ const PostArchive = ({ title, postData }) => {
             {isLargerThan1280 && <Box w="25%"><CoursePage /></Box>}
 
             <Box w={isLargerThan1280 ? "50%" : "100%"} boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
-                <Heading opacity="0.7" size="md" mb={2}><MyBreadcrumb title={title} /></Heading>
+                <MyBreadcrumb title={title} />
                 <hr />
                 <Box mt={2}>
                     {postData.loading ? (

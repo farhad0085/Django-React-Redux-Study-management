@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link as RouterLink } from 'react-router-dom';
-import { Heading, Box, Link, Spacer, Flex, Container } from "@chakra-ui/react";
-
+import { Box, Link, Spacer, Flex, Container } from "@chakra-ui/react";
+import Title from '../components/helpers/Title';
 
 const BaseFormCard = (props) => {
 
@@ -9,8 +9,7 @@ const BaseFormCard = (props) => {
         <Container maxW="xl">
             <Box boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
 
-                <Heading opacity="0.7" as="h2" size="lg" letterSpacing={"-.1rem"}>{props.title}</Heading>
-
+                <Title as="h2" size="lg" letterSpacing={"-.1rem"} title={props.title}/>
                 <hr />
                 <Box mb={4} mt={4}>
                     {props.children}

@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { NavLink } from "react-router-dom";
 import { loadSemesters } from '../../store/actions/semesterAction';
 import { useDispatch, useSelector } from 'react-redux'
-import { Heading, List, ListItem, ListIcon, Box } from "@chakra-ui/react";
+import { List, ListItem, ListIcon, Box } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
+import Title from '../../components/helpers/Title';
 
 
 const SemesterPage = () => {
@@ -19,7 +20,7 @@ const SemesterPage = () => {
         <>
             { semesterData.data.length > 0 && (
                 <Box boxShadow="2xl" m={6} p="6" rounded="md" bg="white">
-                    <Heading opacity="0.7" as="h2" size="md" mb={2}>Semesters</Heading>
+                    <Title title="Semesters" as="h2" />
                     <hr />
                     <List mt={2} spacing={3}>
                         {semesterData.data.map(semester => {

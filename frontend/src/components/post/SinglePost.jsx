@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
-import { Heading, Text, Box, List, ListItem, ListIcon, Image, Wrap, WrapItem } from "@chakra-ui/react";
+import { Text, Box, List, ListItem, ListIcon, Image, Wrap, WrapItem } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
 import Loading from '../helpers/Loading';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { Link as ChakraLink } from "@chakra-ui/react";
+import Title from '../helpers/Title';
 
 
 const SinglePost = ({ post }) => {
@@ -25,10 +25,10 @@ const SinglePost = ({ post }) => {
 
     return (
         <Box key={post.id} boxShadow="md" my={6} p="6" rounded="md" bg="white">
-            <Heading opacity="0.7" size="sm" mb={2}>{post.title}</Heading>
+            <Title size="sm" title={post.title} />
             <hr />
             <Text mt={2}>{post.body}</Text>
-            <Heading opacity="0.7" size="sm" my={2}>Attachments</Heading>
+            <Title size="sm" my={2} title="Attachments" />
             <Wrap>
                 {post.questions.map(question => {
                     return question.pictures.map((picture, index) => {
