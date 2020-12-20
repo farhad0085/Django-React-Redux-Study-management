@@ -155,3 +155,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 # media settings
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+REST_AUTH_SERIALIZERS = {
+    'PASSWORD_RESET_SERIALIZER': 
+        'user.serializers.PasswordResetSerializer',
+}
