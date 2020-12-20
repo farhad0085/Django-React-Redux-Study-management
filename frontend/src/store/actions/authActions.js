@@ -32,3 +32,32 @@ export const logout = () => dispatch => {
             dispatch({type: Types.USER_LOGIN_LOADING, payload: true})
         })
 }
+
+
+export const resetPasswordRequest = (email) => dispatch => {
+    dispatch({type: Types.USER_LOGIN_LOADING, payload: true})
+
+    axios.post("/auth/password/reset/", {email})
+    .then(res => {
+        console.log(res.data);
+        dispatch({type: Types.USER_LOGIN_LOADING, payload: false})
+    })
+    .catch(error => {
+        console.log(error.response.data);
+        dispatch({type: Types.USER_LOGIN_LOADING, payload: false})
+    })
+}
+
+export const resetPassword = (token, uid, new_password1, new_password2) => dispatch => {
+    dispatch({type: Types.USER_LOGIN_LOADING, payload: true})
+
+    axios.post("/auth/password/reset/", {new_password1, new_password2, uid, token})
+    .then(res => {
+        console.log(res.data);
+        dispatch({type: Types.USER_LOGIN_LOADING, payload: false})
+    })
+    .catch(error => {
+        console.log(error.response.data);
+        dispatch({type: Types.USER_LOGIN_LOADING, payload: false})
+    })
+}
