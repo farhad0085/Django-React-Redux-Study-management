@@ -35,7 +35,7 @@ class Picture(models.Model):
 class Question(models.Model):
     pictures = models.ManyToManyField(Picture, related_name="questions")
     year = models.IntegerField(default=datetime.datetime.today().year)
-    course_teacher = models.CharField(max_length=100)
+    course_teacher = models.CharField(max_length=100, default="Course Teacher Not Assigned")
     created_date = models.DateTimeField(auto_now_add=True)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='questions')

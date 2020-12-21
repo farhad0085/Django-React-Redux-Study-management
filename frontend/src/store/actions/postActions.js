@@ -112,7 +112,7 @@ export const createPost = (postData) => dispatch => {
 
         Promise.all(requestArray)
             .then((responses)=>{
-                axios.post("/questions/", { course, course_teacher: "Someone", semester, pictures: responses.map(res => res.data.id) }, {headers: getHeaders()})
+                axios.post("/questions/", { course, semester, pictures: responses.map(res => res.data.id) }, {headers: getHeaders()})
                     .then((res => {
                         // now create the post
                         axios.post("/posts/", { course, body, semester, questions: [res.data.id] }, {headers: getHeaders()})
