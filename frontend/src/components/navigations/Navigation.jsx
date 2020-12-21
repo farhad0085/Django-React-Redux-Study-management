@@ -56,6 +56,9 @@ const Navigation = props => {
             >
                 {auth.isAuthenticated ? (
                     <>
+                    <Button as={NavLink} to="/course/new" leftIcon={<AddIcon />} mr={{ base: 2 }} bg="transparent" border="1px">
+                        Create Course
+                    </Button>
                     <Button as={NavLink} to="/post/new" leftIcon={<AddIcon />} mr={{ base: 2 }} bg="transparent" border="1px">
                         Upload
                     </Button>
