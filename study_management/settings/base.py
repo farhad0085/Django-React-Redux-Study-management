@@ -3,9 +3,15 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
+
+def convert_to_bool(string):
+    string = str(string)
+    return string.lower() in ['true', '1', 't', 'y', 'yes', 'yeah', 'yup', 'yep', 'ha']
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-DEBUG = os.environ.get("DEBUG")
+DEBUG = convert_to_bool(os.environ.get("DEBUG"))
+
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 ALLOWED_HOSTS = []
@@ -145,7 +151,7 @@ SERVER_EMAIL = os.environ.get("SERVER_EMAIL") # used for sending error messages 
 
 EMAIL_HOST = os.environ.get("EMAIL_HOST")
 EMAIL_PORT = os.environ.get("EMAIL_PORT")
-EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS")
+EMAIL_USE_TLS = convert_to_bool(os.environ.get("EMAIL_USE_TLS"))
 
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")

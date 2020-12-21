@@ -28,9 +28,14 @@ class PasswordResetSerializer(serializers.Serializer):
 
     def get_email_options(self):
         """Override this method to change default e-mail options"""
+
+        extra_email_context = {
+            "DEBUG_FLAG": settings.DEBUG
+        }
         return {
             # 'email_template_name': 'reset-password-email.txt',
-            'html_email_template_name': 'reset-password-email.html'
+            'html_email_template_name': 'reset-password-email.html',
+            'extra_email_context': extra_email_context
         }
 
     def validate_email(self, value):
@@ -46,6 +51,7 @@ class PasswordResetSerializer(serializers.Serializer):
 
     def save(self):
         request = self.context.get('request')
+        reset_url = "http://google.com"
         # Set some values to trigger the send_email method.
         opts = {
             'use_https': request.is_secure(),
