@@ -52,14 +52,16 @@ export const resetPasswordRequest = (email) => dispatch => {
 
 export const resetPassword = (token, uid, new_password1, new_password2) => dispatch => {
     dispatch({type: Types.AUTH_LOADING, payload: true})
+    dispatch({type: Types.RESET_PASSWORD_ERROR, payload: {}})
 
-    axios.post("/auth/password/reset/", {new_password1, new_password2, uid, token})
+    axios.post("/auth/password/reset/confirm/", {new_password1, new_password2, uid, token})
     .then(res => {
-        console.log(res.data);
         dispatch({type: Types.AUTH_LOADING, payload: false})
+        dispatch({type: Types.RESET_PASSWORD_STATUS, payload: true})
+        dispatch({type: Types.RESET_PASSWORD_ERROR, payload: {}})
     })
     .catch(error => {
-        console.log(error.response.data);
         dispatch({type: Types.AUTH_LOADING, payload: false})
+        dispatch({type: Types.RESET_PASSWORD_ERROR, payload: error.response.data})
     })
 }

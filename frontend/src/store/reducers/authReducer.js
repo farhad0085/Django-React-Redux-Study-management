@@ -5,7 +5,8 @@ const initialState = {
     loginErrors: {},
     resetPasswordErrors: {},
     loading: false,
-    passwordResetEmailSent: false
+    passwordResetEmailSent: false,
+    passwordResetted: false
 }
 
 function authReducer(state = initialState, action) {
@@ -27,6 +28,18 @@ function authReducer(state = initialState, action) {
             return {
                 ...state,
                 passwordResetEmailSent: action.payload
+            }
+        }
+        case Types.RESET_PASSWORD_ERROR: {
+            return {
+                ...state,
+                resetPasswordErrors: action.payload
+            }
+        }
+        case Types.RESET_PASSWORD_STATUS: {
+            return {
+                ...state,
+                passwordResetted: action.payload
             }
         }
         case Types.USER_LOGIN_ERROR: {

@@ -12,8 +12,8 @@ const ResetPassword = (props) => {
 
     const dispatch = useDispatch();
 
-    const [password1, setPassword1] = useState("");
-    const [password2, setPassword2] = useState("");
+    const [new_password1, setPassword1] = useState("");
+    const [new_password2, setPassword2] = useState("");
 
     const {uid, token} = props.match.params;
 
@@ -21,7 +21,8 @@ const ResetPassword = (props) => {
 
     const submitHandler = event => {
         event.preventDefault();
-        dispatch(resetPassword(uid, token, password1, password2));
+
+        dispatch(resetPassword(token, uid, new_password1, new_password2));
     }
 
     return (
@@ -39,23 +40,28 @@ const ResetPassword = (props) => {
 
                 <FormField
                     label="Password"
-                    value={password1}
+                    value={new_password1}
                     onChange={setPassword1}
                     placeholder="Password"
                     type="password"
+                    isInvalid={!!auth.resetPasswordErrors.new_password1}
+                    errorMsg={auth.resetPasswordErrors.new_password1}
                 />
 
                 <FormField
                     label="Confirm Password"
-                    value={password2}
+                    value={new_password2}
                     onChange={setPassword2}
                     placeholder="Confirm Password"
                     type="password"
+                    isInvalid={!!auth.resetPasswordErrors.new_password2}
+                    errorMsg={auth.resetPasswordErrors.new_password2}
                 />
 
                 <SubmitButton isLoading={auth.loading} loadingText="Resetting..." title="Reset Password" />
             </form>
-            {Object.keys(auth.loginErrors).length > 0 && <DismissableAlert mt={2} text="Unable to reset password!" type="error" />}
+            {auth.passwordResetted && <DismissableAlert mt={2} text="Password changed successfully!" type="success" />}
+            {Object.keys(auth.resetPasswordErrors).length > 0 && <DismissableAlert mt={2} text="Failed to change password!" type="error" />}
         </BaseFormCard>
     )
 }
