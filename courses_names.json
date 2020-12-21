@@ -1,0 +1,467 @@
+[
+	{
+        "model": "course.Course",
+        "pk": 1,
+		"fields": {
+			"course_code": "EEE 121",
+			"semester": 1,
+			"title": "ELECTRICAL CIRCUITS I"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 122",
+			"semester": 1,
+			"title": "ELECTRICAL CIRCUITS I LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "CSE 203E",
+			"semester": 1,
+			"title": "INTRODUCTION TO COMPUTER LANGUAGE"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "CSE 204E",
+			"semester": 1,
+			"title": "INTRODUCTION TO COMPUTER LANGUAGE LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "ENG 101E",
+			"semester": 1,
+			"title": "EFFECTIVE COMMUNICATION IN ENGLISH"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "ENG 102E",
+			"semester": 1,
+			"title": "ENGLISH LANGUAGE LAB I"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "MAT 103E",
+			"semester": 1,
+			"title": "DIFFERENTIAL AND INTEGRAL CALCULUS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "PHY 103E",
+			"semester": 1,
+			"title": "MECHANICS, WAVE, HEAT & THERMODYNAMICS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 123",
+			"semester": 2,
+			"title": "ELECTRICAL CIRCUITS II"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 124",
+			"semester": 2,
+			"title": "ELECTRICAL CIRCUITS II LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "PHY 207E",
+			"semester": 2,
+			"title": "ELECTROMAGNETISM, OPTICS & MODERN PHYSICS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "PHY 204E",
+			"semester": 2,
+			"title": "PHYSICS II LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "CHE 101E",
+			"semester": 2,
+			"title": "GENERAL CHEMISTRY"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "CHE 102E",
+			"semester": 2,
+			"title": "GENERAL CHEMISTRY LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "ARC 108E",
+			"semester": 2,
+			"title": "COMPUTER AIDED ENGINEERING DRAWING"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "MAT 101E",
+			"semester": 2,
+			"title": "CO-ORDINATE GEOMETRY AND LINEAR ALGEBRA"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "ECO 105E",
+			"semester": 2,
+			"title": "PRINCIPLES OF ECONOMICS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 221",
+			"semester": 3,
+			"title": "ELECTRONICS I"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 221",
+			"semester": 3,
+			"title": "ELECTRONICS I"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 222",
+			"semester": 3,
+			"title": "ELECTRONICS I LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 231",
+			"semester": 3,
+			"title": "SIGNALS AND LINEAR SYSTEMS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 223",
+			"semester": 3,
+			"title": "ELECTRICAL MACHINES I"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 224",
+			"semester": 3,
+			"title": "ELECTRICAL MACHINES I LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "CSE 210E",
+			"semester": 3,
+			"title": "NUMERICAL ANALYSIS LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "BUS 243E",
+			"semester": 3,
+			"title": "COST AND MANAGEMENT ACCOUNTING"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "MAT 201E",
+			"semester": 3,
+			"title": "VECTOR ANALYSIS AND COMPLEX VARIABLES"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 225",
+			"semester": 4,
+			"title": "ELECTRICAL MACHINES II"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 226",
+			"semester": 4,
+			"title": "ELECTRICAL MACHINES II LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 227",
+			"semester": 4,
+			"title": "ELECTRONICS II"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 228",
+			"semester": 4,
+			"title": "ELECTONICS LAB II"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 229",
+			"semester": 4,
+			"title": "ELECTROMAGNETIC FIELDS AND WAVES"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 232",
+			"semester": 4,
+			"title": "ELECTRICAL SERVICE DESIGN"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "STA 202E ",
+			"semester": 4,
+			"title": "BASIC STATISTICS & PROBABILITY"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "MAT 203E",
+			"semester": 4,
+			"title": "OORDINARY AND PARTIAL DIFFERENTIAL EQUATIONS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 323",
+			"semester": 5,
+			"title": "DIGITAL ELECTRONICS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 324",
+			"semester": 5,
+			"title": "DIGITAL ELECTRONICS LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 325",
+			"semester": 5,
+			"title": "POWER SYSTEM I"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 326 ",
+			"semester": 5,
+			"title": "POWER SYSTEM I LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 327 ",
+			"semester": 5,
+			"title": "ELECTRICAL PROPERTIES OF MATERIALS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 331",
+			"semester": 5,
+			"title": "DIGITAL SIGNAL PROCESSING I"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 332",
+			"semester": 5,
+			"title": "DIGITAL SIGNAL PROCESSING I LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "MEE 313E",
+			"semester": 5,
+			"title": "FUNDAMENTALS OF MECHANICAL ENGINEERING"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 329",
+			"semester": 6,
+			"title": "COMMUNICATION TECHNIQUES IN PRACTICE"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 330",
+			"semester": 6,
+			"title": "COMMUNICATION TECHIQUES IN PRACTICE LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 333",
+			"semester": 6,
+			"title": "MICROPROCESSOR & INTERFACING"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 334",
+			"semester": 6,
+			"title": "MICROPROCESSOR & INTERFACING LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 335",
+			"semester": 6,
+			"title": "CONTROL SYSTEM I"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 336",
+			"semester": 6,
+			"title": "CONTROL SYSTEM I LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 337",
+			"semester": 6,
+			"title": "POWER SYSTEM II"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 339",
+			"semester": 6,
+			"title": "POWER ELECTRONICS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 340",
+			"semester": 6,
+			"title": "POWER ELECTRONICS LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 400",
+			"semester": 7,
+			"title": "PROJECT/THESIS (INITIAL WORK)"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 421",
+			"semester": 7,
+			"title": "SOLID STATE DEVICES"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 455",
+			"semester": 7,
+			"title": "VLSI DESIGN AND TESTING"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 456",
+			"semester": 7,
+			"title": "VLSI DESIGN AND TESTING LAB"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 402",
+			"semester": 7,
+			"title": "INDUSTRIAL TRAINING"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 408",
+			"semester": 8,
+			"title": "PROJECT/THESIS"
+		}
+	},
+	{
+		"model": "course.Course",
+		"fields": {
+			"course_code": "EEE 410",
+			"semester": 8,
+			"title": "VIVA VOCE"
+		}
+	}
+]

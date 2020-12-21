@@ -13,7 +13,7 @@ class Semester(models.Model):
         return self.display_name
 
 class Course(models.Model):
-    course_code = models.CharField(max_length=8, unique=True)
+    course_code = models.CharField(max_length=8)
     title = models.CharField(max_length=200)
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE, related_name='courses')
 
