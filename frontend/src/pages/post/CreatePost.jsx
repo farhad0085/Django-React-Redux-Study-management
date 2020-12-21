@@ -24,6 +24,7 @@ const CreatePost = () => {
     const [body, setBody] = useState("")
     const [postType, setPostType] = useState("book"); // options -> book, question, classNote
     const [uploadedFiles, setUploadedFiles] = useState([]);
+    const [uploadedFileError, setUploadedFileError] = useState("");
     const fileTypes = {
         question: 'image/jpeg, image/png, image/webp',
         book: 'application/pdf',
@@ -35,8 +36,15 @@ const CreatePost = () => {
         dispatch(getAllCourse())
     }, [dispatch])
 
+    useEffect(() => {
+        if (uploadedFiles.length !== 0) setUploadedFileError("")
+    }, [uploadedFiles])
+
     const submitHandler = e => {
         e.preventDefault()
+
+        if (uploadedFiles.length === 0) return setUploadedFileError("Please select some attachments!")
+        else setUploadedFileError("")
 
         const data = {
             uploadedFiles,
@@ -92,6 +100,7 @@ const CreatePost = () => {
                     onChange={setUploadedFiles}
                     allowedFileType={fileTypes[postType]}
                     postType={postType}
+                    error={uploadedFileError}
                 />
 
                 {semesterData.data.length > 0 ? (

@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { ArrowUpIcon, CheckCircleIcon } from "@chakra-ui/icons";
-import { Button, Box, Center, List, ListItem, ListIcon, FormLabel } from "@chakra-ui/react";
+import { Button, Box, Center, List, ListItem, ListIcon, FormLabel, Text } from "@chakra-ui/react";
 import { formatFileSize, createUUID } from "../../utils";
 
-const DragDropUpload = ({ onChange, allowedFileType, postType }) => {
+const DragDropUpload = ({ onChange, allowedFileType, postType, error }) => {
     
     const onDrop = useCallback((acceptedFiles) => {
         setFiles(old => {
@@ -38,6 +38,12 @@ const DragDropUpload = ({ onChange, allowedFileType, postType }) => {
                         Choose Files
                     </Button>
                 </Center>
+                { error && (
+                    <Center my={2}>
+                        <Text color="#ff0000">{error}</Text>
+                    </Center>
+                )}
+                
             </Box>
             {files.length > 0 && <FileList files={files} />}
         </>
