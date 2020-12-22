@@ -16,8 +16,6 @@ DEBUG = convert_to_bool(os.environ.get("DEBUG"))
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-ALLOWED_HOSTS = []
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
