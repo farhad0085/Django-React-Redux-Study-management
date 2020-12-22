@@ -1,7 +1,9 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-load_dotenv()
+
+ENV_PATH = os.path.join(Path(__file__).resolve().parent.parent.parent, '.env')
+load_dotenv(ENV_PATH)
 
 
 def convert_to_bool(string):
