@@ -12,6 +12,10 @@ from .serializers import (
 )
 from django_filters import rest_framework as filters
 from rest_framework import filters as drf_filters
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'build/index.html')
 
 
 class SemesterViewSet(ModelViewSet):
