@@ -147,14 +147,6 @@
 	{
 		"model": "course.Course",
 		"fields": {
-			"course_code": "EEE 221",
-			"semester": 3,
-			"title": "ELECTRONICS I"
-		}
-	},
-	{
-		"model": "course.Course",
-		"fields": {
 			"course_code": "EEE 222",
 			"semester": 3,
 			"title": "ELECTRONICS I LAB"
