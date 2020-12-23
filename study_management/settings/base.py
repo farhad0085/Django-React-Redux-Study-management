@@ -140,7 +140,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "frontend", "build", "static")
 ]
-STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
 
 REST_AUTH_SERIALIZERS = {
     'PASSWORD_RESET_SERIALIZER': 'user.serializers.PasswordResetSerializer',
