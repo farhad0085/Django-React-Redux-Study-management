@@ -1,21 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from .models import Course, Question, Semester, Book, Picture, Post, ClassNote
-from .serializers import (
-    CourseSerializer,
-    QuestionSerializer,
-    SemesterSerializer,
-    BookSerializer,
-    PictureSerializer,
-    PostSerializer,
-    PostListSerializer,
-    ClassNoteSerializer
-)
+from .serializers import *
 from django_filters import rest_framework as filters
 from rest_framework import filters as drf_filters
-from django.shortcuts import render
-
-def index(request):
-    return render(request, 'build/index.html')
 
 
 class SemesterViewSet(ModelViewSet):

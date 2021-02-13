@@ -8,11 +8,12 @@ load_dotenv(ENV_PATH)
 
 def convert_to_bool(string):
     string = str(string)
-    return string.lower() in ['true', '1', 't', 'y', 'yes', 'yeah', 'yup', 'yep', 'ha']
+    return string.lower() in ['true', '1']
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-DEBUG = convert_to_bool(os.environ.get("DEBUG"))
+ENVIRONMENT = convert_to_bool(os.environ.get("ENVIRONMENT"))
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -32,7 +33,7 @@ ROOT_URLCONF = 'study_management.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -46,13 +47,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'study_management.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -137,9 +131,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # media settings
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "frontend", "build", "static")
-]
 STATIC_ROOT = 'staticfiles'
 
 REST_AUTH_SERIALIZERS = {

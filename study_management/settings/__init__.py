@@ -1,6 +1,6 @@
 from .base import *
 
-if DEBUG:
-    from .dev import *
-else:
+if ENVIRONMENT == "production":
     from .prod import *
+else:
+    from .dev import *
