@@ -1,0 +1,74 @@
+[
+    {
+        "model": "course.Semester",
+        "fields": {
+            "display_name": "1/1",
+            "full_name": "First Year, First Semester",
+            "code": 11,
+            "description": ""
+        }
+    },
+    {
+        "model": "course.Semester",
+        "fields": {
+            "display_name": "1/2",
+            "full_name": "First Year, Second Semester",
+            "code": 12,
+            "description": ""
+        }
+    },
+    {
+        "model": "course.Semester",
+        "fields": {
+            "display_name": "2/1",
+            "full_name": "Second Year, First Semester",
+            "code": 21,
+            "description": ""
+        }
+    },
+    {
+        "model": "course.Semester",
+        "fields": {
+            "display_name": "2/2",
+            "full_name": "Second Year, Second Semester",
+            "code": 22,
+            "description": ""
+        }
+    },
+    {
+        "model": "course.Semester",
+        "fields": {
+            "display_name": "3/1",
+            "full_name": "Third Year, First Semester",
+            "code": 31,
+            "description": ""
+        }
+    },
+    {
+        "model": "course.Semester",
+        "fields": {
+            "display_name": "3/2",
+            "full_name": "Third Year, Second Semester",
+            "code": 32,
+            "description": ""
+        }
+    },
+    {
+        "model": "course.Semester",
+        "fields": {
+            "display_name": "4/1",
+            "full_name": "Fourth Year, First Semester",
+            "code": 41,
+            "description": ""
+        }
+    },
+    {
+        "model": "course.Semester",
+        "fields": {
+            "display_name": "4/2",
+            "full_name": "Fourth Year, Second Semester",
+            "code": 42,
+            "description": ""
+        }
+    }
+]

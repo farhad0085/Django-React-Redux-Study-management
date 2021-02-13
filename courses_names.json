@@ -1,7 +1,6 @@
 [
 	{
         "model": "course.Course",
-        "pk": 1,
 		"fields": {
 			"course_code": "EEE 121",
 			"semester": 1,
