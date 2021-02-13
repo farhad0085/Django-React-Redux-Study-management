@@ -13,7 +13,7 @@ def convert_to_bool(string):
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-ENVIRONMENT = convert_to_bool(os.environ.get("ENVIRONMENT"))
+ENVIRONMENT = os.environ.get("ENVIRONMENT")
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
