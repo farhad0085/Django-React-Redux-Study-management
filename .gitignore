@@ -5,3 +5,4 @@ media/books/*
 media/pictures/*
 media/classnotes/*
 .env
+db.sqlite3
