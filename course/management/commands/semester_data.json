@@ -5,7 +5,7 @@
             "display_name": "1/1",
             "full_name": "First Year, First Semester",
             "code": 11,
-            "description": ""
+            "description": "First Year, First Semester"
         }
     },
     {
@@ -14,7 +14,7 @@
             "display_name": "1/2",
             "full_name": "First Year, Second Semester",
             "code": 12,
-            "description": ""
+            "description": "First Year, Second Semester"
         }
     },
     {
@@ -23,7 +23,7 @@
             "display_name": "2/1",
             "full_name": "Second Year, First Semester",
             "code": 21,
-            "description": ""
+            "description": "Second Year, First Semester"
         }
     },
     {
@@ -32,7 +32,7 @@
             "display_name": "2/2",
             "full_name": "Second Year, Second Semester",
             "code": 22,
-            "description": ""
+            "description": "Second Year, Second Semester"
         }
     },
     {
@@ -41,7 +41,7 @@
             "display_name": "3/1",
             "full_name": "Third Year, First Semester",
             "code": 31,
-            "description": ""
+            "description": "Third Year, First Semester"
         }
     },
     {
@@ -50,7 +50,7 @@
             "display_name": "3/2",
             "full_name": "Third Year, Second Semester",
             "code": 32,
-            "description": ""
+            "description": "Third Year, Second Semester"
         }
     },
     {
@@ -59,7 +59,7 @@
             "display_name": "4/1",
             "full_name": "Fourth Year, First Semester",
             "code": 41,
-            "description": ""
+            "description": "Fourth Year, First Semester"
         }
     },
     {
@@ -68,7 +68,7 @@
             "display_name": "4/2",
             "full_name": "Fourth Year, Second Semester",
             "code": 42,
-            "description": ""
+            "description": "Fourth Year, Second Semester"
         }
     }
 ]
